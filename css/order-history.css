@@ -1,0 +1,26 @@
+@media (max-width: 1024px) {
+  /* Apply the styles when the screen width is 1024px or smaller */
+  .status-circle {
+    display: none !important; /* Set display to none for circles */
+  }
+}
+
+.product.disabled-overlay::before {
+  content: '';
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #858585;
+  opacity: 0.5; /* Adjust the opacity to get the desired effect */
+  pointer-events: none; /* Allows clicks to pass through */
+  z-index: 1; /* Make sure this is above the product content */
+  cursor: not-allowed;
+  border-radius: 15px;
+}
+
+.product {
+  position: relative; /* Needed for absolute positioning of the overlay */
+}
