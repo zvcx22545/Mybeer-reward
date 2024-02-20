@@ -45,7 +45,7 @@ let LiffID = "2002643017-EN5j2n0d";
             //Api 605 Get all merchandise
 
             let Allmerchandise = {
-              url: `https://games.myworld-store.com/api//merchandises/publish/${customer_id}/`,
+              url: `https://games.myworld-store.com/api/merchandises/publish/${customer_id}/`,
               method: "GET",
               timeout: 0,
               headers: {
@@ -175,7 +175,7 @@ let LiffID = "2002643017-EN5j2n0d";
             // Api 302 trading trading Merchandise
             // AJAX request setup
             var tradeMerchandise = {
-              url: "https://games.myworld-store.com/api//customers/tradeMerchandise",
+              url: "https://games.myworld-store.com/api/customers/tradeMerchandise",
               method: "POST",
               timeout: 0,
               headers: {
@@ -290,7 +290,7 @@ let LiffID = "2002643017-EN5j2n0d";
           });
 
           var customerTrade = {
-            url: `https://games.myworld-store.com/api//trades/customer/${customer_id}`,
+            url: `https://games.myworld-store.com/api/trades/customer/${customer_id}`,
             method: "GET",
             timeout: 0,
             headers: {
@@ -688,37 +688,26 @@ let LiffID = "2002643017-EN5j2n0d";
 }
 
 
-document.addEventListener('DOMContentLoaded', async function() {
-
+document.addEventListener('DOMContentLoaded', async function () {
   try {
-    // Initialize LIFF
-    liff.ready.then(() => {
-      if (liff.isLoggedIn()) {
-        console.log('User is logged in. Fetching user profile...');
-        fetchUserProfile();
-      } else {
-        console.log('User is not logged in. Redirecting to login...');
-        liff.login({
-          redirectUri: "https://liff.line.me/2002643017-EN5j2n0d"
-        })
-        .catch((error) => {
-          console.error('Error during login:', error);
-          alert('Error during login. Please try again.');
-        });
-      }
-    });
     await liff.init({
       liffId: LiffID,
       withLoginOnExternalBrowser: true
     });
 
-    // Wait for LIFF to be ready
-
+    liff.ready.then(async () => { // Mark this block as async
+      if (liff.isLoggedIn()) {
+        console.log('User is logged in. Fetching user profile...');
+        fetchUserProfile();
+      } else {
+        console.log('User is not logged in. Redirecting to login...');
+        await liff.login({
+          redirectUri: "https://liff.line.me/2002643017-EN5j2n0d"
+        });
+      }
+    });
   } catch (error) {
     console.error('Error initializing LIFF:', error);
     alert('Error initializing app. Please try again.');
-    // Redirect to the specified URL if initialization fails
   }
-
-
 });
