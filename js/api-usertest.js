@@ -364,32 +364,32 @@ function fetchUserProfile() {
                       Shipmemttext = "text-white";
                     }
                     const ContenTradeing = `
-                    <div class="grid border-[#DBDBDB] p-2 my-3 gap-2 shadow-md">
+                    <div class="grid border-[#DBDBDB] px-3 py-6 mb-6 gap-2 shadow-lg">
                     <div class="flex justify-between">
-                      <h1>${Tradeorder.trade_number}</h1>
-                        <div class="flex gap-1 items-center ${bgColor} rounded-full py-1 px-2">
+                      <h1 class="text-2xl">${Tradeorder.trade_number}</h1>
+                        <div class="flex gap-2 items-center ${bgColor} rounded-full py-1 px-2">
                         <div class="${circleClass} h-4 w-4 rounded-full"></div>
                         <h1 class="${additionalClasses}">${ApproveProductText}</h1>
                         </div>
                     </div>
                       <div class="flex gap-2">
                       
-                        <p class="text-[#B3B3B3]">วันที่แลกซื้อ :</p> <p>${Time}</p>
+                        <p class="text-[#B3B3B3] text-xl">วันที่แลกซื้อ :</p> <p class="text-xl">${Time}</p>
                       </div>
                       <div class="flex gap-2">
-                        <p class="text-[#B3B3B3]">Product :</p> <p>${Tradeorder.merchandise.name}</p>
+                        <p class="text-[#B3B3B3] text-xl">Product :</p> <p class="text-xl">${Tradeorder.merchandise.name}</p>
                       </div>
                       <div class="flex gap-2">
-                        <p class="text-[#B3B3B3]">จำนวน Point ที่แลก :</p> <p>${Tradeorder.merchandise.point}</p>
+                        <p class="text-[#B3B3B3] text-xl">จำนวน Point ที่แลก :</p> <p class="text-xl">${Tradeorder.merchandise.point}</p>
                       </div>
 
                     <div class="flex justify-between">
                       <div class="flex gap-2">
-                        <p class="text-[#B3B3B3]">การรับของ :</p> <p>${Type}</p>
+                        <p class="text-[#B3B3B3] text-xl">การรับของ :</p> <p class="text-xl">${Type}</p>
                       </div>
                       <div class="flex items-center gap-2">
-                        <p class="text-[#B3B3B3]">การตรวจสอบ :</p> 
-                        <div class="flex gap-1 items-center ${bgShipment} rounded-full py-1 px-2">
+                        <p class="text-[#B3B3B3] text-xl">การตรวจสอบ :</p> 
+                        <div class="flex gap-2 items-center ${bgShipment} rounded-full py-1 px-2">
                           <div class="${ShipmentClass} h-4 w-4 rounded-full"></div>
                           <h1 class="${Shipmemttext}">${ShipmemtText}</h1>
                         </div>
