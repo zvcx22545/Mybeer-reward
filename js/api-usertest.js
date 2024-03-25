@@ -4,16 +4,17 @@
 // let CLIENT_SECRET = "6fa02e2c38585be6eb059593e044112c";
 let LiffID = "2002643017-EN5j2n0d";
 
- function fetchUserProfile() {
+function fetchUserProfile() {
   try {
-      // User is logged in, fetch the user profile immediately
-      try {
-        liff.getProfile().then(profile => {
+    // User is logged in, fetch the user profile immediately
+    try {
+      liff
+        .getProfile()
+        .then((profile) => {
+          // console.log('User profile:', profile);
 
-        // console.log('User profile:', profile);
-        
-        const customer_id = profile.userId;
-        document.getElementById("CustomerId").value = customer_id;
+          const customer_id = profile.userId;
+          document.getElementById("CustomerId").value = customer_id;
 
           //Api 301 Get all user
           const getuserprofile =
@@ -33,7 +34,6 @@ let LiffID = "2002643017-EN5j2n0d";
             }),
           };
           $.ajax(Getuserprofile).done(function (response) {
-
             // Update the HTML content with the API data
             $("#Nameuser").text(response.name);
             $("#points").text(`Points: ${response.point}`);
@@ -45,7 +45,7 @@ let LiffID = "2002643017-EN5j2n0d";
             //Api 605 Get all merchandise
 
             let Allmerchandise = {
-              url: `https://games.myworld-store.com/api//merchandises/publish/${customer_id}/`,
+              url: `https://games.myworld-store.com/api/merchandises/publish/${customer_id}/`,
               method: "GET",
               timeout: 0,
               headers: {
@@ -65,8 +65,9 @@ let LiffID = "2002643017-EN5j2n0d";
                     // Generate the merchandise HTML
                     const canredeem = item.can_redeem;
                     var merchandiseHTML = `
-                  <div class="product ${!isEnabled || !canredeem ? "disabled-overlay" : ""
-                      }" data-merchandise-id="${item.merchandise_id}">
+                  <div class="product ${
+                    !isEnabled || !canredeem ? "disabled-overlay" : ""
+                  }" data-merchandise-id="${item.merchandise_id}">
                           <img src="../images/logo-2_1.png" alt="">
                           <div class="content" data-name="p-1">
                               <img src="${item.picture}" alt="${item.name}">
@@ -105,8 +106,8 @@ let LiffID = "2002643017-EN5j2n0d";
                     if (selectedMerchandiseId) {
                       var imgSrc = $(
                         '.product[data-merchandise-id="' +
-                        selectedMerchandiseId +
-                        '"] .content img'
+                          selectedMerchandiseId +
+                          '"] .content img'
                       ).attr("src");
 
                       var h3Value = $(this).find("h3").text();
@@ -175,7 +176,7 @@ let LiffID = "2002643017-EN5j2n0d";
             // Api 302 trading trading Merchandise
             // AJAX request setup
             var tradeMerchandise = {
-              url: "https://games.myworld-store.com/api//customers/tradeMerchandise",
+              url: "https://games.myworld-store.com/api/customers/tradeMerchandise",
               method: "POST",
               timeout: 0,
               headers: {
@@ -278,6 +279,33 @@ let LiffID = "2002643017-EN5j2n0d";
                   });
                 }
               } else if (response.type === "shipping") {
+                Swal.fire({
+                  title: "ต้องการแลกสิทธิ์หรือไม่?",
+                  text: "เมื่อกดปุ่ม 'ยืนยัน' ท่านจะไม่สามารถแก้ไขข้อมูลได้",
+                  icon: "warning",
+                  showCancelButton: true,
+                  confirmButtonColor: "#3085d6",
+                  cancelButtonColor: "#d33",
+                  cancelButtonText: "ปิด",
+                  confirmButtonText: "ยืนยัน",
+                }).then((result) => {
+                  if (result.isConfirmed) {
+                    console.log("หากกดยืนยัน ");
+                    Swal.fire({
+                      title: "แลกสิทธิ์สำเร็จ!",
+                      text: "การแลกสิทธิ์ของคุณได้รับการยืนยันแล้ว",
+                      icon: "success",
+                      confirmButtonColor: "#3085d6",
+                      confirmButtonText: "ปิด",
+                    }).then((result) => {
+                      if (result.isConfirmed) {
+                        console.log("กดปิด จะปิด Modal");
+                      }
+                    });
+                  } else {
+                    console.log("Modal would be closed");
+                  }
+                });
                 location.reload();
               }
 
@@ -290,7 +318,7 @@ let LiffID = "2002643017-EN5j2n0d";
           });
 
           var customerTrade = {
-            url: `https://games.myworld-store.com/api//trades/customer/${customer_id}`,
+            url: `https://games.myworld-store.com/api/trades/customer/${customer_id}`,
             method: "GET",
             timeout: 0,
             headers: {
@@ -308,43 +336,68 @@ let LiffID = "2002643017-EN5j2n0d";
                   let merchandiseId = $("#merchandiseId").val();
 
                   response.forEach(function (Tradeorder, index) {
-                    let row = $("<tr>").addClass(
-                      "bg-white border-b dark:bg-gray-800 dark:border-gray-700"
-                    );
-                    row.append(
-                      $("<td>")
-                        .addClass("px-6 py-4")
-                        .text(index + 1)
-                    ); // Order number
-                    row.append(
-                      $("<td>")
-                        .addClass("px-6 py-4")
-                        .text(Tradeorder.trade_number)
-                    );
                     let Time = moment
                       .tz(Tradeorder.created_at, "Asia/Bangkok")
                       .format("DD/MM/YYYY HH:mm:ss");
-                    row.append($("<td>").addClass("px-6 py-4").text(Time));
-                    row.append(
-                      $("<td>")
-                        .addClass("px-6 py-4")
-                        .text(Tradeorder.merchandise.name)
-                    );
-
-                    row.append(
-                      $("<td>")
-                        .addClass("px-6 py-4")
-                        .text(Tradeorder.merchandise.point)
-                    );
                     let Type = Showtype(Tradeorder.type);
-                    row.append($("<td>").addClass("px-6 py-4").text(Type));
-                    let Approve = getApproveStatus(Tradeorder.approve_status);
-                    row.append($("<td>").addClass("px-6 py-4").append(Approve));
-                    let Shipment = getShipmentstatus(Tradeorder.shipment_status);
-                    row.append($("<td>").addClass("px-6 py-4").append(Shipment));
+                    let ApproveProduct = getApproveStatus(
+                      Tradeorder.approve_status
+                    );
+                    let ApproveProductText = ApproveProduct.circle.text();
+                    let bgColor = ApproveProduct.bgColor;
+                    let circleClass = ApproveProduct.circleClass; // Retrieve circleClass from the result of getApproveStatus
+                    let Shipment = getShipmentstatus(
+                      Tradeorder.shipment_status
+                    );
+                    let ShipmemtText = Shipment.Shipments.text();
+                    let ShipmentClass = Shipment.ShipmentClass;
+                    let bgShipment = Shipment.bgColor;
+                    console.log(circleClass);
+                    let additionalClasses = "";
+                    let Shipmemttext = "";
 
-                    // ... append other cells ...
-                    $("#TradeHistory").append(row);
+                    // Check if bgColor is "bg-red-400", if true, add "text-white" class
+                    if (bgColor === "bg-red-400") {
+                      additionalClasses = "text-white";
+                    }
+                    if (bgShipment === "bg-red-400") {
+                      Shipmemttext = "text-white";
+                    }
+                    const ContenTradeing = `
+                    <div class="grid border-[#DBDBDB] p-2 my-3 gap-2 shadow-md">
+                    <div class="flex justify-between">
+                      <h1>${Tradeorder.trade_number}</h1>
+                        <div class="flex gap-1 items-center ${bgColor} rounded-full py-1 px-2">
+                        <div class="${circleClass} h-4 w-4 rounded-full"></div>
+                        <h1 class="${additionalClasses}">${ApproveProductText}</h1>
+                        </div>
+                    </div>
+                      <div class="flex gap-2">
+                      
+                        <p class="text-[#B3B3B3]">วันที่แลกซื้อ :</p> <p>${Time}</p>
+                      </div>
+                      <div class="flex gap-2">
+                        <p class="text-[#B3B3B3]">Product :</p> <p>${Tradeorder.merchandise.name}</p>
+                      </div>
+                      <div class="flex gap-2">
+                        <p class="text-[#B3B3B3]">จำนวน Point ที่แลก :</p> <p>${Tradeorder.merchandise.point}</p>
+                      </div>
+
+                    <div class="flex justify-between">
+                      <div class="flex gap-2">
+                        <p class="text-[#B3B3B3]">การรับของ :</p> <p>${Type}</p>
+                      </div>
+                      <div class="flex items-center gap-2">
+                        <p class="text-[#B3B3B3]">การตรวจสอบ :</p> 
+                        <div class="flex gap-1 items-center ${bgShipment} rounded-full py-1 px-2">
+                          <div class="${ShipmentClass} h-4 w-4 rounded-full"></div>
+                          <h1 class="${Shipmemttext}">${ShipmemtText}</h1>
+                        </div>
+                      </div>
+                    </div>
+                    </div>
+                    `;
+                    $("#TradeHistory").append(ContenTradeing);
                   });
                   // ... rest of your code ...
                 }
@@ -367,101 +420,142 @@ let LiffID = "2002643017-EN5j2n0d";
           };
 
           function getShipmentstatus(Shipstatus) {
+            let ShipmentClass;
+            let bgColor;
             // Create the status circle element
 
             // Depending on the status, change the color of the circle
             if (Shipstatus === "pending") {
+              ShipmentClass = "bg-[#F1BC00]";
+              bgColor = "bg-[#F4EBCB]";
               // Set the text and background color for the Shipstatus cell if it's "Shipping"
-              return $("<div>")
-                .css({
-                  display: "flex",
-                  padding: "5px 5px",
-                  border: "1px solid #414141",
-                  gap: "7px",
-                  "align-items": "center",
-                  "justify-content": "center",
-                })
-                .append(document.createTextNode("รอดำเนินการ"));
+              return {
+                Shipments: $("<div>")
+                  .css({
+                    display: "flex",
+                    padding: "5px 3px",
+                    border: "1px solid red",
+                    color: "red",
+                    gap: "7px",
+                    "align-items": "center",
+                    "justify-content": "center",
+                  })
+                  .append(document.createTextNode("รอดำเนินการ")),
+                ShipmentClass: ShipmentClass,
+                bgColor: bgColor,
+              };
             }
             if (Shipstatus === "complete") {
+              ShipmentClass = "bg-[#1FD831]";
+              bgColor = "bg-[#CBF4CC]";
               // Set the text and background color for the Shipstatus cell if it's "Shipping"
-              return $("<div>")
-                .css({
-                  display: "flex",
-                  padding: "5px 3px",
-                  border: "1px solid #1AA127",
-                  color: "#1AA127",
-                  gap: "7px",
-                  "align-items": "center",
-                  "justify-content": "center",
-                })
-                .append(document.createTextNode("จัดส่งสำเร็จ"));
+              return {
+                Shipments: $("<div>")
+                  .css({
+                    display: "flex",
+                    padding: "5px 3px",
+                    border: "1px solid #1AA127",
+                    color: "#1AA127",
+                    gap: "7px",
+                    "align-items": "center",
+                    "justify-content": "center",
+                  })
+                  .append(document.createTextNode("จัดส่งสำเร็จ")),
+                ShipmentClass: ShipmentClass,
+                bgColor: bgColor,
+              };
             }
             if (Shipstatus === "cancel") {
+              ShipmentClass = "bg-red-700";
+              bgColor = "bg-red-400";
               // If Shipstatus is not "Shipping", handle other Shipstatuses here
               // For the sake of example, let's assume it's "Complete"
-
-              return $("<div>")
-                .css({
-                  display: "flex",
-                  padding: "5px 3px",
-                  border: "1px solid red",
-                  color: "red",
-                  gap: "7px",
-                  "align-items": "center",
-                  "justify-content": "center",
-                })
-                .append(document.createTextNode("ยกเลิกจัดส่ง"));
+              return {
+                Shipments: $("<div>")
+                  .css({
+                    display: "flex",
+                    padding: "5px 3px",
+                    border: "1px solid red",
+                    color: "red",
+                    gap: "7px",
+                    "align-items": "center",
+                    "justify-content": "center",
+                  })
+                  .append(document.createTextNode("ยกเลิกจัดส่ง")),
+                ShipmentClass: ShipmentClass,
+                bgColor: bgColor,
+              };
             }
+            return Shipstatus;
           }
+
           function getApproveStatus(Approvestatus) {
-            // Create the status circle element
+            let circleClass; // Define circleClass here
+            let bgColor;
 
             // Depending on the status, change the color of the circle
             if (Approvestatus === "pending") {
+              circleClass = "bg-[#F1BC00]";
+              bgColor = "bg-[#F4EBCB]";
               // Set the text and background color for the Approvestatus cell if it's "Shipping"
-              return $("<div>")
-                .css({
-                  display: "flex",
-                  padding: "5px 5px",
-                  border: "1px solid #414141",
-                  gap: "7px",
-                  "align-items": "center",
-                  "justify-content": "center",
-                })
-                .append(document.createTextNode("รอดำเนินการ"));
+              return {
+                circle: $("<div>")
+                  .css({
+                    display: "flex",
+                    padding: "5px 3px",
+                    border: "1px solid red",
+                    color: "red",
+                    gap: "7px",
+                    "align-items": "center",
+                    "justify-content": "center",
+                  })
+                  .append(document.createTextNode("รอดำเนินการ")),
+                circleClass: circleClass,
+                bgColor: bgColor,
+              };
             }
 
             if (Approvestatus === "complete") {
+              circleClass = "bg-[#1FD831]";
+              bgColor = "bg-[#CBF4CC]";
+
               // Set the text and background color for the Approvestatus cell if it's "Shipping"
-              return $("<div>")
-                .css({
-                  display: "flex",
-                  padding: "5px 3px",
-                  border: "1px solid #1AA127",
-                  color: "#1AA127",
-                  gap: "7px",
-                  "align-items": "center",
-                  "justify-content": "center",
-                })
-                .append(document.createTextNode("ตรวจสอบแล้ว"));
+              return {
+                circle: $("<div>")
+                  .css({
+                    display: "flex",
+                    padding: "5px 3px",
+                    border: "1px solid red",
+                    color: "red",
+                    gap: "7px",
+                    "align-items": "center",
+                    "justify-content": "center",
+                  })
+                  .append(document.createTextNode("ตรวจสอบแล้ว")),
+                circleClass: circleClass,
+                bgColor: bgColor,
+              };
             }
             if (Approvestatus === "cancel") {
-              // If Approvestatus is not "Shipping", handle other Approvestatuses here
-              // For the sake of example, let's assume it's "Complete"
-
-              return $("<div>")
-                .css({
-                  display: "flex",
-                  padding: "5px 3px",
-                  border: "1px solid red",
-                  color: "red",
-                  gap: "7px",
-                  "align-items": "center",
-                  "justify-content": "center",
-                })
-                .append(document.createTextNode("ยกเลิกสิทธิ์"));
+              circleClass = "bg-red-700";
+              bgColor = "bg-red-400";
+              return {
+                circle: $("<div>")
+                  .css({
+                    display: "flex",
+                    padding: "5px 3px",
+                    border: "1px solid red",
+                    color: "red",
+                    gap: "7px",
+                    "align-items": "center",
+                    "justify-content": "center",
+                  })
+                  .append(document.createTextNode("ยกเลิกสิทธิ์")),
+                circleClass: circleClass,
+                bgColor: bgColor,
+              };
             }
+            return Approvestatus;
           }
           // $.ajax(customerTrade).done(function (response) {
           //   console.log(response);
@@ -493,9 +587,47 @@ let LiffID = "2002643017-EN5j2n0d";
                 if (Array.isArray(response)) {
                   let tableBody = $("tbody"); // Assuming you have a <tbody> element in your HTML
                   let rowNumber = 0; // Initialize the row number counter
+                  
 
                   response.forEach(function (order, index) {
                     order.orderItems.forEach(function (item) {
+                      let statusElement = getStatusElement(
+                        order.shipmentStatus
+                      );
+                      let Statustext = statusElement.circle.text();
+                      const Ordercontent = `
+                                            <div class="grid border-[#DBDBDB] p-2 gap-2 shadow-md">
+                                <div class="flex justify-between">
+                                  <div class="flex gap-2">
+                                    <p class="text-[#B3B3B3]">Order :</p> <p>${order.orderNumber}</p>
+                                  </div>
+                      <!-- Status -->
+                                      <h1>${Statustext}</h1>
+                      <!-- ------- -->
+                                </div>
+                                  <div class="flex gap-2">
+                                    <p class="text-[#B3B3B3]">Name :</p> <p>Peter Parker</p>
+                                  </div>
+                                  <div class="flex gap-2">
+                                    <p class="text-[#B3B3B3]">Product :</p> <p>${item.name}</p>
+                                  </div>
+                                          
+                                <div class="flex justify-between">
+                                  <div class="flex gap-2">
+                                    <p class="text-[#B3B3B3]">Amount :</p> <p>${order.discountAmount}</p>
+                                  </div>
+                                  <div class="flex items-center gap-2">
+                                    <p class="text-[#B3B3B3]">Price (THB) :</p> 
+                      <!-- Status -->
+                                    <div class="flex gap-1 items-center bg-[#CBF4CC] rounded-full py-1 px-2">
+                                      <div class="bg-[#1FD831] h-4 w-4 rounded-full"></div>
+                                      <h1>${order.totalPrice}</h1>
+                                    </div>
+                      <!-- ------ -->
+                                  </div>
+                                </div>
+                            </div>
+                      `;
                       let row = $("<tr>").addClass(
                         "bg-white border-b dark:bg-gray-800 dark:border-gray-700"
                       );
@@ -513,21 +645,25 @@ let LiffID = "2002643017-EN5j2n0d";
                       //     .addClass("px-6 py-4")
                       //     .text(order.shippingAddress.recipientName)
                       // );
-                      row.append($("<td>").addClass("px-6 py-4").text(item.name));
                       row.append(
-                        $("<td>").addClass("px-6 py-4").text(order.discountAmount)
+                        $("<td>").addClass("px-6 py-4").text(item.name)
+                      );
+                      row.append(
+                        $("<td>")
+                          .addClass("px-6 py-4")
+                          .text(order.discountAmount)
                       );
                       row.append(
                         $("<td>").addClass("px-6 py-4").text(order.totalPrice)
                       );
-                      let statusElement = getStatusElement(order.shipmentStatus);
+                    
                       row.append(
                         $("<td>").addClass("px-6 py-4").append(statusElement)
                       );
 
                       // ... append other cells ...
 
-                      $("#OrderHistory").append(row);
+                      $("#OrderHistory").append(Ordercontent);
                     });
                   });
                   // ... rest of your code ...
@@ -674,51 +810,38 @@ let LiffID = "2002643017-EN5j2n0d";
                 .append(circle)
                 .append(document.createTextNode("ยังไม่จัดส่ง"));
             }
-
           }
-        }).catch(err => console.error(err));
-        
-        } catch (error) {
-          console.error("Error processing profile:", error);
-        }
-
+        })
+        .catch((err) => console.error(err));
+    } catch (error) {
+      console.error("Error processing profile:", error);
+    }
   } catch (error) {
     console.error("Error during AJAX request:", error);
   }
 }
 
-
-document.addEventListener('DOMContentLoaded', async function() {
-
+document.addEventListener("DOMContentLoaded", async function () {
   try {
-    // Initialize LIFF
+    await liff.init({
+      liffId: LiffID,
+      withLoginOnExternalBrowser: true,
+    });
+
     liff.ready.then(() => {
+      // Mark this block as async
       if (liff.isLoggedIn()) {
-        console.log('User is logged in. Fetching user profile...');
+        console.log("User is logged in. Fetching user profile...");
         fetchUserProfile();
       } else {
-        console.log('User is not logged in. Redirecting to login...');
+        console.log("User is not logged in. Redirecting to login...");
         liff.login({
-          redirectUri: "https://liff.line.me/2002643017-EN5j2n0d"
-        })
-        .catch((error) => {
-          console.error('Error during login:', error);
-          alert('Error during login. Please try again.');
+          redirectUri: "https://liff.line.me/2002643017-EN5j2n0d",
         });
       }
     });
-    await liff.init({
-      liffId: LiffID,
-      withLoginOnExternalBrowser: true
-    });
-
-    // Wait for LIFF to be ready
-
   } catch (error) {
-    console.error('Error initializing LIFF:', error);
-    alert('Error initializing app. Please try again.');
-    // Redirect to the specified URL if initialization fails
+    console.error("Error initializing LIFF:", error);
+    alert("Error initializing app. Please try again.");
   }
-
-
 });
