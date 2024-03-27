@@ -2,7 +2,7 @@
 // let CALLBACK_URL = "https://mybeer-point.com";
 // let CLIENT_ID = "2002643017";
 // let CLIENT_SECRET = "6fa02e2c38585be6eb059593e044112c";
-let LiffID = "2002643017-EN5j2n0d";
+let LiffID = "2002643017-7pYpek5O";
 
 function fetchUserProfile() {
   try {
@@ -12,10 +12,18 @@ function fetchUserProfile() {
         .getProfile()
         .then((profile) => {
           // console.log('User profile:', profile);
+          console.log(profile)
 
           const customer_id = profile.userId;
-          document.getElementById("CustomerId").value = customer_id;
 
+          if( document.getElementById("CustomerId"))
+          {
+            document.getElementById("CustomerId").value = customer_id;
+          }
+          else if( document.getElementById("userid"))
+          {
+            document.getElementById("userid").value = customer_id;
+          }
           //Api 301 Get all user
           const getuserprofile =
             "https://games.myworld-store.com/api/customers/customerInfo";
@@ -39,6 +47,7 @@ function fetchUserProfile() {
             $("#points").text(`Points: ${response.point}`);
             $("#Profileimage").attr("src", response.picture);
             $("#Profilemini").attr("src", response.picture);
+            $("#Telephone").attr("value",response.phone);
 
             var userPoints = response.point;
 

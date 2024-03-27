@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/Mybeer7-11.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <title>Mybeer Point</title>
+</head>
+
+<body>
+    
+    <div class="flex justify-center items-center min-h-screen m-[2rem] min-[430px]:m-[0.5rem]">
+        <div class="w-[100%] max-[1180px]:mt-[10rem] max-[1183px]:mx-[0.5rem] max-[1600px]:mt-[18rem] max-lg:mt-[20rem] max-md:mt-[13rem] max-[1600px]:mx-[20rem] min-[1600px]:mt-[20rem] min-[1600px]:mx-[20rem]">
+            <!-- <img src="/static/img/logo.png" alt="" class="mx-auto block mb-[1rem] w-[83px]"> -->
+            <div class="w-[100%] h-cover border-1 border-[#28B7E1] rounded-[15px] bg-white mx-auto text-center p-[1rem]">
+                <div id="top-contents" class="text-center mb-[1rem]">
+                    <h1 class="font-bold text-2xl text-[#28B7E1]">My World</h1>
+                    <h1 class="font-bold text-[1rem]">สะสมแต้มได้ทุกยอดการสั่งซื้อ</h1>
+                </div>
+                <form action="" id="form-submit">
+                    <div class="text-left">
+                        <label class="font-bold" for="Phone">เบอร์โทร</label>
+                        <input class="w-[100%] border-1 border-[#000] p-2 rounded-lg mt-[0.5rem] mb-[1rem]" type="tel" pattern="\d{10}" maxlength="10" placeholder="กรุณากรอกเบอร์โทร" id="Telephone"
+                            required>
+                    </div>
+                    <div class="text-left hidden">
+                        <label class="font-bold" for="userid">customer_id</label>
+                        <input class="w-[100%] border-1 border-[#000] p-2 rounded-lg mt-[0.5rem] mb-[1rem]" type="text" id="userid" 
+                            required>
+                    </div>
+
+                    <hr class="my-2">
+
+                    <div class="text-left flex justify-between gap-[15px] my-4 items-end">
+                        <div class="w-full">
+                            <!-- <div class="grid">
+                                <label class="font-bold" for="type">ชิ้นที่ 1</label>
+                                <label for="type">ประเภทสินค้า</label>
+                             </div> -->
+                             <label for="type">ประเภทสินค้า</label>
+                            <div class="relative inline-block w-full h-[40px] mt-[0.5rem]">
+                                <div class="bg-[#DEDEDE] border border-black rounded-lg p-2 cursor-pointer flex justify-end items-center w-full h-[40px] select-container">
+                                    <span id="selectedOption" class="me-auto line-clamp-1">My beer</span>
+                                    <i id="icon1" class="fas fa-angle-down" style="transition: transform 0.2s;"></i>
+                                </div>
+                                <select id="selectBox" class="absolute inset-0 opacity-0 cursor-pointer w-full h-[40px] select-Box" required>
+                                    <option value="" disabled selected>กรุณาเลือกประเภทสินค้า</option>
+                                    <!-- Add more options as needed -->
+                                </select>
+                            </div>
+                        </div>
+                        <div class="grid items-end w-full">
+                            <label for="type">ราคา (บาท)</label>
+                            <input class="w-[100%] h-[40px] border-1 border-[#000] p-2 rounded-lg mt-[0.5rem] text-right Price" id="Price" type="text" required readonly>
+                        </div>
+                    </div>
+
+                    <!-- <div class="text-left  gap-[15px] my-[10px]" id="container-form"></div> -->
+
+                    <!-- <div class="mt-[2rem] flex justify-end">
+                        <button class=" border-2 border-[#28B7E1] rounded-[6px] w-[20%] py-[5px] text-[#28B7E1]" type="button" id="add-form"> <i class="bi bi-plus-circle"></i>เพิ่ม</button>
+                    </div> -->
+
+                    <hr class="my-2">
+
+                    <div class="text-left flex justify-between gap-[15px] items-end mt-[2rem]">
+                        <div class="w-full">
+                            <div class="grid">
+                                <label for="type">ช่องทางการจัดจำหน่าย</label>
+                            </div>
+                            <input
+                                class="w-[100%] h-[40px] bg-[#DEDEDE] text-[#858585] border-1 border-[#000] p-2 rounded-lg mt-[0.5rem]"
+                                value="ร้านโซห่วย" readonly>
+                        </div>
+                        <!-- <div class="w-full">
+                        <div class="grid">
+                                <label for="admin">ผู้ขายสินค้า</label>
+                            </div>
+                            <div class="relative inline-block w-full h-[40px] mt-[0.5rem]">
+                                <div class="bg-[#DEDEDE] border border-black rounded-lg p-2 cursor-pointer flex justify-end items-center w-full h-[40px]">
+                                    <span id="selectedOption1" class="me-auto">ชื่อผู้ขายสินค้า</span>
+                                    <i id="icon2" class="fas fa-angle-down" style="transition: transform 0.2s;"></i>
+                                </div>
+                                <select id="sellerSelectBox" name="options" class="absolute inset-0 opacity-0 cursor-pointer w-full h-[40px] select-Box">
+                                    <option value="" disabled selected>ชื่อผู้ขายสินค้า</option>
+                                </select>
+                            </div>
+                    </div> -->
+                    </div>
+
+                <!-- <hr class="mt-[2rem]"> -->
+
+                    <div class="mt-[2rem] flex justify-between gap-[15px] h-[15vh]">
+                        <div class="w-[50%]" id="img-preview"><img src="https://placehold.co/100x100" class="w-[10rem] mx-auto" alt="" id="mockimage" ></div>
+                        <div class="w-[70%] grid ">
+                            <label for="upload-img"
+                                class=" border-2 border-[#28B7E1] h-[40px] w-full top-0 rounded-[6px] py-[5px] text-[#28B7E1]">
+                                อัพโหลดรูป
+                                <input type="file" class="absolute opacity-0 cursor-pointer hidden" id="upload-img"
+                                    required>
+                            </label>
+                            <p class="mb-2 text-[#28B7E1] text-left">
+                                Image should be at least 300 x 300 px in PNG or JPG.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class=" mb-2 max-[768px]:mt-[2rem] min-[768px]:mt-[5rem]">
+                        <button type="submit"
+                            class="h-[40px] w-[180px] bg-[#28B7E1] border-1 border-[#28B7E1] text-[#fff] rounded-lg hover:bg-[#fff] hover:text-[#28B7E1]"
+                            id="sent">ยืนยัน</button>
+                    </div>
+
+                </form>
+
+                <div class="mt-[2rem] flex justify-center items-start hidden" id="processLoading">
+                    <div class="mb-[3rem]">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="#24B6E0"
+                            class="bi bi-arrow-repeat animate-spin h-[30%] w-[30%] mx-auto mb-[2rem]"
+                            viewBox="0 0 16 16">
+                            <path
+                                d="M11.534 7h3.932a.25.25 0 0 1 .192.41l-1.966 2.36a.25.25 0 0 1-.384 0l-1.966-2.36a.25.25 0 0 1 .192-.41m-11 2h3.932a.25.25 0 0 0 .192-.41L2.692 6.23a.25.25 0 0 0-.384 0L.342 8.59A.25.25 0 0 0 .534 9" />
+                            <path fill-rule="evenodd"
+                                d="M8 3c-1.552 0-2.94.707-3.857 1.818a.5.5 0 1 1-.771-.636A6.002 6.002 0 0 1 13.917 7H12.9A5 5 0 0 0 8 3M3.1 9a5.002 5.002 0 0 0 8.757 2.182.5.5 0 1 1 .771.636A6.002 6.002 0 0 1 2.083 9z" />
+
+                        </svg>
+                        <h1>กำลังดำเนินการ.....</h1>
+                    </div>
+                </div>
+
+                <div class="mt-[2rem] flex justify-center items-start hidden" id="success" >
+                    <div class="mb-[3rem]">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="#05B917"
+                            class="bi bi-check-circle-fill h-[10%] w-[10%] mx-auto mb-[2rem] animate-bounce"
+                            viewBox="0 0 16 16">
+                            <path
+                                d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z" />
+                        </svg>
+                        <h1>ลงทะเบียนสำเร็จ<br>คุณได้ทำการสะสมแต้มสำเร็จ</h1>
+                    </div>
+                </div>
+
+            </div>
+            <div id="closeSuccess" class="mt-[2rem] flex justify-center hidden">
+                <button id="countdownButton" class="rounded-lg w-[25%] h-[40px] bg-[#6C6C6C] text-[#fff]">ปิด</button>
+            </div>
+        </div>
+    </div>
+</body>
+<!-- ------------------------Script---------------------------- -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script charset="utf-8" src="https://static.line-scdn.net/liff/edge/versions/2.23.2/sdk.js"></script>
+<script src="/js/Api7-11/Script.js"></script>
+<script src="/js/Api7-11/Add-form.js"></script>
+<script src="/js/Api7-11/hideAndseek.js"></script>
+<script src="/js/Api7-11/Connect-Api.js"></script>
+<script src="/js/Api7-11/img-preview.js"></script>
+<script src="/js/api-usertest.js"></script>
+<script src="https://cdn.tailwindcss.com"></script>
+
+
+</select>
+
+
+
+</html>

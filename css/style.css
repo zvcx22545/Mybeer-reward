@@ -211,6 +211,11 @@ body{
    color:#fff;
 }
 
+.empty-top a
+{
+display: inline-block;
+
+}
 
 @media (max-width:991px){
 
