@@ -212,6 +212,11 @@ body{
    color:#fff;
 }
 
+.empty-top a
+{
+display: inline-block;
+
+}
 
 @media (max-width:991px){
 
@@ -237,3 +242,10 @@ body{
 
 }
 
+.swal2-styled.swal2-confirm {
+   order: 2 !important;
+ }
+ 
+.swal2-styled.swal2-cancel {
+   order: 1 !important; 
+ }
