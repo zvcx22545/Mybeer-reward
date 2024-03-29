@@ -4,11 +4,11 @@
 // let CLIENT_SECRET = "6fa02e2c38585be6eb059593e044112c";
 let LiffID = "2002643017-7pYpek5O";
 
-function fetchUserProfile() {
+async function fetchUserProfile() {
   try {
     // User is logged in, fetch the user profile immediately
     try {
-      liff
+       liff
         .getProfile()
         .then((profile) => {
           // console.log('User profile:', profile);
@@ -839,13 +839,16 @@ document.addEventListener("DOMContentLoaded", async function () {
 
     liff.ready.then(() => {
       // Mark this block as async
-      if (liff.isLoggedIn()) {
+      if (liff.isInClient()) {
+        fetchUserProfile()
+      }
+      else if (liff.isLoggedIn()) {
         console.log("User is logged in. Fetching user profile...");
         fetchUserProfile();
       } else {
         console.log("User is not logged in. Redirecting to login...");
         liff.login({
-          redirectUri: "https://liff.line.me/2002643017-EN5j2n0d",
+          redirectUri: "https://liff.line.me/2002643017-7pYpek5O",
         });
       }
     });

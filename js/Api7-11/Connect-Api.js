@@ -134,7 +134,8 @@ $(document).ready(function () {
           clearInterval(countdownInterval);
           countdownButton.innerText = "เสร็จสิ้น";
           setTimeout(function () {
-            location.reload(); // Or redirect as needed
+            window.location.href = "index.html"
+            // location.reload(); // Or redirect as needed
           }, 1000);
         } else {
           countdownButton.innerText = "( " + countdown + " ) ปิด";
