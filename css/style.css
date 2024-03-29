@@ -27,9 +27,10 @@ html{
  }
 
 body{
-   background-image: url(https://cdn.discordapp.com/attachments/1147854094929776664/1201735870869417984/bg.png);
+   background-image: url('../images/top-bg.png');
    background-repeat: no-repeat;
-   background-size: contain;
+   background-size: 100% 20rem;
+   background-position: top center;
 }
 .container{
    max-width: 1200px;
