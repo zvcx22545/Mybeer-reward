@@ -29,7 +29,7 @@ html{
 body{
    background-image: url('../images/top-bg.png');
    background-repeat: no-repeat;
-   background-size: 100% 100%;
+   background-size: 100% 20rem;
    background-position: top center;
 }
 .container{
