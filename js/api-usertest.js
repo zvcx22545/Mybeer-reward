@@ -597,6 +597,7 @@ async function fetchUserProfile() {
                   response.forEach(function(order, index) {
                       order.orderItems.forEach(function(item) {
                         
+                          let Shoptype = order.orderType;
                           const Shipmentstatus = getStatusElement(order.shipmentStatus); // Adjust this function to return a string based on shipmentStatus
                           statusText = Shipmentstatus.Shipments.text();
                           let ShipmentCircle = Shipmentstatus.ShipmentClass;
@@ -636,7 +637,48 @@ async function fetchUserProfile() {
                                   </div>
                               </div>
                           `;
-                          $("#OrderHistory").append(orderContent);
+                          let Time = moment
+                      .tz(order.updated_at, "Asia/Bangkok")
+                      .format("DD/MM/YYYY HH:mm:ss");
+                      if(Shoptype === "storefront")
+                      {
+                        Shoptype = "ร้านโชห่วย";
+                      }
+
+                          const StoreFront = `
+                           <div class="grid border-[#DBDBDB] gap-2 shadow-lg px-3 py-6 mb-6">
+                                  <div class="flex justify-between">
+                                      <div class="flex gap-2">
+                                          <p class="text-[#B3B3B3] text-xl">Order :</p> <p class="text-xl">${order.orderNumber}</p>
+                                      </div>
+                                          <div class="flex gap-1 items-center ${bgShipment} rounded-full py-1 px-2">
+                                            <div class="${ShipmentCircle} h-4 w-4 rounded-full"></div>
+                                            <h1 class="${ShipmemtText}">${statusText}</h1>
+                                            </div>
+                                  </div>
+                                  <div class="flex gap-2">
+                                      <p class="text-[#B3B3B3] text-xl">Product :</p> <p class="text-xl">${item.name}</p>
+                                  </div>
+                                  <div class="flex gap-2">
+                                      <p class="text-[#B3B3B3] text-xl">Date :</p> <p class="text-xl">${Time} </p>
+                                  </div>
+                                  <div class="flex justify-between">
+                                      <div class="flex gap-2">
+                                          <p class="text-[#B3B3B3] text-xl">ช่องทาง :</p> <p class="text-xl">${Shoptype}</p>
+                                      </div>
+                                    
+                                  </div>
+                              </div>
+                          `
+                          if(Shoptype)
+                          {
+                            $("#OrderHistory").append(StoreFront);
+                          }
+                          else{
+                            $("#OrderHistory").append(orderContent);
+                          }
+                          
+                          
                       });
                   });
               }
