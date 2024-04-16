@@ -61,7 +61,7 @@ body{
 .container .products-container .product{
    text-align: center;
    padding:1.5rem 1.5rem;
-   background-image: url(https://cdn.discordapp.com/attachments/1175992104988712970/1202628711430750218/Subtract_5.png);
+   background-image: url('../images/bg.png');
    background-repeat: no-repeat;
    background-position: center center;
    background-size: 100% 100%;
