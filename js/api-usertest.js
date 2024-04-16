@@ -2,7 +2,7 @@
 // let CALLBACK_URL = "https://mybeer-point.com";
 // let CLIENT_ID = "2002643017";
 // let CLIENT_SECRET = "6fa02e2c38585be6eb059593e044112c";
-let LiffID = "2002643017-7pYpek5O";
+let LiffID = "2002643017-EN5j2n0d";
 
 async function fetchUserProfile() {
   try {
@@ -585,239 +585,208 @@ async function fetchUserProfile() {
             url: `https://games.myworld-store.com/api/orders/customer/${customer_id}`,
             method: "GET",
             timeout: 0,
+            maxBodyLength: Infinity,
             headers: {
               Authorization:
                 "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3MDUzMzYzNDR9.g0VSsvTajlOr_FsNiQBTuCbIUM-O24R5jCwREc_9eP0",
             },
           };
           try {
-            $.ajax(GetOrders)
-              .done(function (response) {
-                if (Array.isArray(response)) {
-                  let tableBody = $("tbody"); // Assuming you have a <tbody> element in your HTML
-                  let rowNumber = 0; // Initialize the row number counter
-                  
-
-                  response.forEach(function (order, index) {
-                    order.orderItems.forEach(function (item) {
-                      let statusElement = getStatusElement(
-                        order.shipmentStatus
-                      );
-                      let Statustext = statusElement.circle.text();
-                      const Ordercontent = `
-                                            <div class="grid border-[#DBDBDB] p-2 gap-2 shadow-md">
-                                <div class="flex justify-between">
+            $.ajax(GetOrders).done(function(response) {
+              if (Array.isArray(response)) {
+                  response.forEach(function(order, index) {
+                      order.orderItems.forEach(function(item) {
+                        
+                          let Shoptype = order.orderType;
+                          const Shipmentstatus = getStatusElement(order.shipmentStatus); // Adjust this function to return a string based on shipmentStatus
+                          statusText = Shipmentstatus.Shipments.text();
+                          let ShipmentCircle = Shipmentstatus.ShipmentClass;
+                          let bgShipment = Shipmentstatus.bgColor;
+                          let ShipmemtText = "";
+                          if(bgShipment === "bg-red-400")
+                          {
+                            ShipmemtText = "text-white";
+                          }
+                          const orderContent = `
+                              <div class="grid border-[#DBDBDB] gap-2 shadow-lg px-3 py-6 mb-6">
+                                  <div class="flex justify-between">
+                                      <div class="flex gap-2">
+                                          <p class="text-[#B3B3B3] text-xl">Order :</p> <p class="text-xl">${order.orderNumber}</p>
+                                      </div>
+                                          <div class="flex gap-1 items-center ${bgShipment} rounded-full py-1 px-2">
+                                            <div class="${ShipmentCircle} h-4 w-4 rounded-full"></div>
+                                            <h1 class="${ShipmemtText}">${statusText}</h1>
+                                            </div>
+                                  </div>
                                   <div class="flex gap-2">
-                                    <p class="text-[#B3B3B3]">Order :</p> <p>${order.orderNumber}</p>
-                                  </div>
-                      <!-- Status -->
-                                      <h1>${Statustext}</h1>
-                      <!-- ------- -->
-                                </div>
-                                  <div class="flex gap-2">
-                                    <p class="text-[#B3B3B3]">Name :</p> <p>Peter Parker</p>
+                                      <p class="text-[#B3B3B3] text-xl">Name :</p> <p class="text-xl">${profile.displayName}</p>
                                   </div>
                                   <div class="flex gap-2">
-                                    <p class="text-[#B3B3B3]">Product :</p> <p>${item.name}</p>
+                                      <p class="text-[#B3B3B3] text-xl">Product :</p> <p class="text-xl">${item.name} </p>
                                   </div>
-                                          
-                                <div class="flex justify-between">
-                                  <div class="flex gap-2">
-                                    <p class="text-[#B3B3B3]">Amount :</p> <p>${order.discountAmount}</p>
-                                  </div>
-                                  <div class="flex items-center gap-2">
-                                    <p class="text-[#B3B3B3]">Price (THB) :</p> 
-                      <!-- Status -->
-                                    <div class="flex gap-1 items-center bg-[#CBF4CC] rounded-full py-1 px-2">
-                                      <div class="bg-[#1FD831] h-4 w-4 rounded-full"></div>
-                                      <h1>${order.totalPrice}</h1>
-                                    </div>
-                      <!-- ------ -->
-                                  </div>
-                                </div>
-                            </div>
-                      `;
-                      let row = $("<tr>").addClass(
-                        "bg-white border-b dark:bg-gray-800 dark:border-gray-700"
-                      );
-
-                      row.append(
-                        $("<td>")
-                          .addClass("px-6 py-4")
-                          .text(index + 1)
-                      ); // Order number
-                      row.append(
-                        $("<td>").addClass("px-6 py-4").text(order.orderNumber)
-                      );
-                      // row.append(
-                      //   $("<td>")
-                      //     .addClass("px-6 py-4")
-                      //     .text(order.shippingAddress.recipientName)
-                      // );
-                      row.append(
-                        $("<td>").addClass("px-6 py-4").text(item.name)
-                      );
-                      row.append(
-                        $("<td>")
-                          .addClass("px-6 py-4")
-                          .text(order.discountAmount)
-                      );
-                      row.append(
-                        $("<td>").addClass("px-6 py-4").text(order.totalPrice)
-                      );
+                                  <div class="flex justify-between">
+                                      <div class="flex gap-2">
+                                          <p class="text-[#B3B3B3] text-xl">Amount :</p> <p class="text-xl">${item.quantity} ชิ้น</p>
+                                      </div>
+                                      <div class="flex items-center gap-2">
+                                          <p class="text-[#B3B3B3] text-xl">Price (THB) :</p>
                     
-                      row.append(
-                        $("<td>").addClass("px-6 py-4").append(statusElement)
-                      );
+                                              <h1 class="font-semibold text-xl">${order.totalPrice}.00</h1>
+                                         
+                                      </div>
+                                  </div>
+                              </div>
+                          `;
+                          let Time = moment
+                      .tz(order.updated_at, "Asia/Bangkok")
+                      .format("DD/MM/YYYY HH:mm:ss");
+                      if(Shoptype === "storefront")
+                      {
+                        Shoptype = "ร้านโชห่วย";
+                      }
 
-                      // ... append other cells ...
-
-                      $("#OrderHistory").append(Ordercontent);
-                    });
+                          const StoreFront = `
+                           <div class="grid border-[#DBDBDB] gap-2 shadow-lg px-3 py-6 mb-6">
+                                  <div class="flex justify-between">
+                                      <div class="flex gap-2">
+                                          <p class="text-[#B3B3B3] text-xl">Order :</p> <p class="text-xl">${order.orderNumber}</p>
+                                      </div>
+                                          <div class="flex gap-1 items-center ${bgShipment} rounded-full py-1 px-2">
+                                            <div class="${ShipmentCircle} h-4 w-4 rounded-full"></div>
+                                            <h1 class="${ShipmemtText}">${statusText}</h1>
+                                            </div>
+                                  </div>
+                                  <div class="flex gap-2">
+                                      <p class="text-[#B3B3B3] text-xl">Product :</p> <p class="text-xl">${item.name}</p>
+                                  </div>
+                                  <div class="flex gap-2">
+                                      <p class="text-[#B3B3B3] text-xl">Date :</p> <p class="text-xl">${Time} </p>
+                                  </div>
+                                  <div class="flex justify-between">
+                                      <div class="flex gap-2">
+                                          <p class="text-[#B3B3B3] text-xl">ช่องทาง :</p> <p class="text-xl">${Shoptype}</p>
+                                      </div>
+                                    
+                                  </div>
+                              </div>
+                          `
+                          if(Shoptype)
+                          {
+                            $("#OrderHistory").append(StoreFront);
+                          }
+                          else{
+                            $("#OrderHistory").append(orderContent);
+                          }
+                          
+                          
+                      });
                   });
-                  // ... rest of your code ...
-                }
-              })
-              .fail(function (jqXHR, textStatus, errorThrown) {
-                console.error("AJAX request failed:", textStatus, errorThrown);
-              });
+              }
+          }).fail(function(jqXHR, textStatus, errorThrown) {
+              console.error("AJAX request failed:", textStatus, errorThrown);
+          });
           } catch (e) {
             console.log(e);
           }
 
           function getStatusElement(status) {
             // Create the status circle element
-            let circle = $("<span>").addClass("status-circle");
-
+            
+            let ShipmentClass;
+            let bgColor;
             // Depending on the status, change the color of the circle
             if (status === "SHIPMENT_READY") {
-              circle.css({
-                display: "flex",
-                width: "15%",
-                height: "16px",
-                "border-radius": "50%",
-                "background-color": "#8349CD",
-                position: "relative",
-                "align-items": "center",
-                "align-items": "center",
-                "justify-content": "center",
-              });
-              // Set the text and background color for the status cell if it's "Shipping"
-              return $("<div>")
-                .css({
-                  display: "flex",
-                  "background-color": "#F0E7FC",
-                  padding: "5px 0px",
-                  "border-radius": "100px",
-                  color: "#8349CD",
-                  gap: "7px",
-                  "align-items": "center",
-                  "justify-content": "center",
-                })
-                .append(circle)
-                .append(document.createTextNode("เตรียมจัดส่ง"));
+              ShipmentClass = "bg-[#F1BC00]";
+              bgColor = "bg-[#F4EBCB]";
+              return {
+                Shipments: $("<div>")
+                  .css({
+                    display: "flex",
+                    padding: "5px 3px",
+                    border: "1px solid red",
+                    color: "red",
+                    gap: "7px",
+                    "align-items": "center",
+                    "justify-content": "center",
+                  })
+                  .append(document.createTextNode("เตรียมจัดส่ง")),
+                ShipmentClass: ShipmentClass,
+                bgColor: bgColor,
+              };
             } else if (status === "ON_DELIVERY") {
-              circle.css({
-                display: "flex",
-                width: "15%",
-                height: "16px",
-                "border-radius": "50%",
-                "background-color": "#F1BC00",
-                position: "relative",
-                "align-items": "center",
-                "justify-content": "center",
-              });
-              // Set the text and background color for the status cell if it's "Shipping"
-              return $("<div>")
-                .css({
-                  display: "flex",
-                  "background-color": "#F4EBCB",
-                  padding: "5px 0px",
-                  color: "#F1BC00",
-                  "border-radius": "100px",
-                  gap: "7px",
-                  "align-items": "center",
-                  "justify-content": "center",
-                })
-                .append(circle)
-                .append(document.createTextNode("กำลังจัดส่ง"));
+              ShipmentClass = "bg-[#F1BC00]";
+              bgColor = "bg-[#F4EBCB]";
+              return {
+                Shipments: $("<div>")
+                  .css({
+                    display: "flex",
+                    padding: "5px 3px",
+                    border: "1px solid red",
+                    color: "red",
+                    gap: "7px",
+                    "align-items": "center",
+                    "justify-content": "center",
+                  })
+                  .append(document.createTextNode("กำลังจัดส่ง")),
+                ShipmentClass: ShipmentClass,
+                bgColor: bgColor,
+              };
             } else if (status === "SHIPPED_ALL") {
-              circle.css({
-                display: "flex",
-                width: "15%",
-                height: "16px",
-                "border-radius": "50%",
-                "background-color": "#1FD831",
-                position: "relative",
-                "align-items": "center",
-                "justify-content": "center",
-              });
-              // Set the text and background color for the status cell if it's "Shipping"
-              return $("<div>")
-                .css({
-                  display: "flex",
-                  "background-color": "#CBF4CC",
-                  padding: "5px 0px",
-                  color: "#1FD831",
-                  "border-radius": "100px",
-                  gap: "7px",
-                  "align-items": "center",
-                  "justify-content": "center",
-                })
-                .append(circle)
-                .append(document.createTextNode("จัดส่งแล้ว"));
+              ShipmentClass = "bg-[#1FD831]";
+              bgColor = "bg-[#CBF4CC]";
+              return {
+                Shipments: $("<div>")
+                  .css({
+                    display: "flex",
+                    padding: "5px 3px",
+                    border: "1px solid red",
+                    color: "red",
+                    gap: "7px",
+                    "align-items": "center",
+                    "justify-content": "center",
+                  })
+                  .append(document.createTextNode("จัดส่งแล้ว")),
+                ShipmentClass: ShipmentClass,
+                bgColor: bgColor,
+              };
             }
             if (status === "PENDING") {
-              circle.css({
-                display: "flex",
-                width: "15%",
-                height: "16px",
-                "border-radius": "50%",
-                "background-color": "#DE6914",
-                position: "relative",
-                "align-items": "center",
-                "justify-content": "center",
-              });
-              // Set the text and background color for the status cell if it's "Shipping"
-              return $("<div>")
-                .css({
-                  display: "flex",
-                  "background-color": "#FFEEE2",
-                  padding: "5px 0px",
-                  color: "#DE6914",
-                  "border-radius": "100px",
-                  gap: "7px",
-                  "align-items": "center",
-                  "justify-content": "center",
-                })
-                .append(circle)
-                .append(document.createTextNode("รอดำเนินการ"));
+              ShipmentClass = "bg-[#F1BC00]";
+              bgColor = "bg-[#F4EBCB]";
+              return {
+                Shipments: $("<div>")
+                  .css({
+                    display: "flex",
+                    padding: "5px 3px",
+                    border: "1px solid red",
+                    color: "red",
+                    gap: "7px",
+                    "align-items": "center",
+                    "justify-content": "center",
+                  })
+                  .append(document.createTextNode("รอดำเนินการ")),
+                ShipmentClass: ShipmentClass,
+                bgColor: bgColor,
+              };
             }
             if (status === "NO_SHIPMENT") {
-              circle.css({
-                display: "flex",
-                width: "15%",
-                height: "16px",
-                "border-radius": "50%",
-                "background-color": "#6D6D6D",
-                position: "relative",
-                "align-items": "center",
-                "justify-content": "center",
-              });
-              // Set the text and background color for the status cell if it's "Shipping"
-              return $("<div>")
-                .css({
-                  display: "flex",
-                  "background-color": "#E2E2E2",
-                  padding: "5px 0px",
-                  color: "#6D6D6D",
-                  "border-radius": "100px",
-                  gap: "7px",
-                  "align-items": "center",
-                  "justify-content": "center",
-                })
-                .append(circle)
-                .append(document.createTextNode("ยังไม่จัดส่ง"));
+              ShipmentClass = "bg-red-700";
+              bgColor = "bg-red-400";
+              return {
+                Shipments: $("<div>")
+                  .css({
+                    display: "flex",
+                    padding: "5px 3px",
+                    border: "1px solid red",
+                    color: "red",
+                    gap: "7px",
+                    "align-items": "center",
+                    "justify-content": "center",
+                  })
+                  .append(document.createTextNode("ยังไม่จัดส่ง")),
+                ShipmentClass: ShipmentClass,
+                bgColor: bgColor,
+              };
             }
           }
         })
@@ -848,7 +817,7 @@ document.addEventListener("DOMContentLoaded", async function () {
       } else {
         console.log("User is not logged in. Redirecting to login...");
         liff.login({
-          redirectUri: "https://liff.line.me/2002643017-7pYpek5O",
+          redirectUri: "https://liff.line.me/2002643017-EN5j2n0d",
         });
       }
     });
