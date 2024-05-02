@@ -239,7 +239,7 @@ async function fetchUserProfile() {
                     confirmButtonText: "ปิด",
                     customClass: {
                       confirmButton:
-                        " mb-[-2rem] w-[100%] h-[30px] rounded-[3px] bg-cyan-500 border-1 border-[#28B7E1] text-[#fff] flex justify-center items-center",
+                        " mb-[-2rem] w-[100%] h-[30px] px-[10rem] rounded-[3px] bg-cyan-500 border-1 border-[#28B7E1] text-[#fff] flex justify-center items-center",
                       title: "mt-[-2.5rem]",
                     },
                     buttonsStyling: false,
@@ -274,7 +274,7 @@ async function fetchUserProfile() {
                     confirmButtonText: "ปิด",
                     customClass: {
                       confirmButton:
-                        "mt-[2rem] mb-[-2rem] w-[100%] h-[30px] rounded-[3px] bg-cyan-500 border-1 border-[#28B7E1] text-[#fff] flex justify-center items-center",
+                        "mt-[2rem] mb-[-2rem] w-[100%] h-[30px] px-[10rem] rounded-[3px] bg-cyan-500 border-1 border-[#28B7E1] text-[#fff] flex justify-center items-center",
                       title: "mt-[-3rem]",
                     },
                     buttonsStyling: false,
