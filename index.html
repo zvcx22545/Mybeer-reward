@@ -116,41 +116,45 @@
 
                 </div>
 
-              <div class="row border-2 p-5 rounded-lg" id="form-check2">
-                  <label class="text-[#444] text-2xl text-left font-bold" for="address">ที่อยู่จัดส่ง</label>
-                <div class="col2 my-2 text-left">
+              <div class="grid border-2 p-5 rounded-lg" id="form-check2">
+                  <label class="text-[#444] text-2xl mr-auto font-bold" for="address">ที่อยู่จัดส่ง</label>
+                <div class="grid my-2 text-left">
                   <label class="text-[#444] px-3" for="address">เลขที่</label>
-                  <input type="text" id="address" class="form-control" placeholder="Address" >
+                  <input type="text" id="address" class="form-control border p-2 rounded-lg border-black" placeholder="Address" >
                 </div>
-                <div class="flex">
-                  <div class="col my-2 mr-2 text-left">
-                    <label class="text-[#444] px-3" for="address">จังหวัด</label>
-                    <input type="text" id="province" class="form-control" placeholder="District" >
 
+                <div class="flex justify-between">
+                  <div class="grid my-2 mr-2 w-full text-left">
+                    <label class="text-[#444] px-3" for="address">จังหวัด</label>
+                    <input type="text" id="province" class="form-control border p-2 rounded-lg border-black" placeholder="District" >
                   </div>
-                  <div class="col my-2 ml-2 text-left">
+                  <div class="grid my-2 ml-2 w-full text-left">
                     <label class="text-[#444] px-3" for="address">เขต/อำเภอ</label>
-                    <input type="text" id="district" class="form-control" placeholder="District" >
+                    <input type="text" id="district" class="form-control border p-2 rounded-lg border-black" placeholder="District" >
                   </div>
                 </div>
-                <div class="flex">
+
+                <div class="flex justify-between">
                   <div class="col my-2 mr-2 text-left">
                     <label class="text-[#444] px-3" for="address">แขวง/ตำบล</label>
-                    <input type="text" id="subDistrict" class="form-control" placeholder="Sub District" >
+                    <input type="text" id="subDistrict" class="form-control border p-2 w-full rounded-lg border-black" placeholder="Sub District" >
                   </div>
                   <div class="col my-2 ml-2 text-left">
                     <label class="text-[#444] px-3" for="address">รหัสไปรษณีย์</label>
-                    <input type="text" id="zipCode" class="form-control" placeholder="Zip Code" >
+                    <input type="text" id="zipCode" class="form-control border p-2 w-full rounded-lg border-black" placeholder="Zip Code" >
                   </div>
                 </div>
-                <div class="col1 my-2 text-left">
+
+                <div class="grid my-2 text-left">
                   <label class="text-[#444] px-3" for="address">ชื่อผู้รับ</label>
-                  <input type="text" id="receiverName" class="form-control" placeholder="Name" >
+                  <input type="text" id="receiverName" class="form-control border p-2 rounded-lg border-black" placeholder="Name" >
                 </div>
-                <div class="col1 my-2 text-left">
+
+                <div class="grid my-2 text-left">
                   <label class="text-[#444] px-3" for="address">เบอร์ติดต่อ</label>
-                  <input type="number" id="phone" class="form-control" placeholder="Phone" maxlength="10" >
+                  <input type="number" id="phone" class="form-control border p-2 rounded-lg border-black" placeholder="Phone" maxlength="10" >
                 </div>
+
                 <div class="col1 my-2 text-left">
                   <input type="text" id="merchandiseId" class="form-control hidden">
                 </div>
@@ -158,8 +162,8 @@
                   <input type="text" id="CustomerId" class="form-control hidden">
                 </div>
               </div>
-              <button class="w-full rounded-lg text-white p-[10px] bg-cyan-500 mt-5" type="submit" id="submit-modal1">แลกสิทธิ์1</button>
-              <button class="w-full rounded-lg text-white p-[10px] bg-cyan-500 mt-5" type="submit" id="submit-modal2">แลกสิทธิ์2</button>
+              <button class="w-full rounded-lg text-white p-[10px] bg-cyan-500 mt-5" type="submit" id="submit-modal1">แลกสิทธิ์</button>
+              <button class="w-full rounded-lg text-white p-[10px] bg-cyan-500 mt-5" type="submit" id="submit-modal2">แลกสิทธิ์</button>
             </form>
           </div>
         </div>

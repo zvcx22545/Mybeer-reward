@@ -2,8 +2,8 @@
 // let CALLBACK_URL = "https://mybeer-point.com";
 // let CLIENT_ID = "2002643017";
 // let CLIENT_SECRET = "6fa02e2c38585be6eb059593e044112c";
-let LiffID = "2002643017-7pYpek5O";
-let LiffUrl = "https://liff.line.me/2002643017-7pYpek5O";
+let LiffID = "2002643017-EN5j2n0d";
+let LiffUrl = "https://liff.line.me/2002643017-EN5j2n0d";
 
 async function fetchUserProfile() {
   try {
