@@ -2,7 +2,7 @@
 // let CALLBACK_URL = "https://mybeer-point.com";
 // let CLIENT_ID = "2002643017";
 // let CLIENT_SECRET = "6fa02e2c38585be6eb059593e044112c";
-let LiffID = "2002643017-EN5j2n0d";
+let LiffID = "2002643017-7pYpek5O";
 
 async function fetchUserProfile() {
   try {
@@ -206,20 +206,9 @@ async function fetchUserProfile() {
                 type: formData.type,
               }),
             };
-
-            // $("#submit-modal1").submit(function (e) {
-            //   e.preventDefault();
-            //   // Coding
-            //   $("#modalpreview").modal("toggle"); //or  $('#IDModal').modal('hide');
-            //   return false;
-            // });
-
-            // Sending the AJAX request
-            // This is your existing AJAX success callback
-            let Name = profile.displayName;
             $.ajax(tradeMerchandise).done(function (response) {
               if (response.type === "onsite") {
-                if (response.point == 0) {
+                if (response.point ==0) { 
                   Swal.fire({
                     title: "ยืนยันรับสิทธิ์สำเร็จ",
                     html:
@@ -311,11 +300,13 @@ async function fetchUserProfile() {
                         console.log("กดปิด จะปิด Modal");
                       }
                     });
+                    location.reload();
+
                   } else {
                     console.log("Modal would be closed");
                   }
                 });
-                location.reload();
+                
               }
 
               // Directly hide the modal by changing its style
@@ -817,7 +808,7 @@ document.addEventListener("DOMContentLoaded", async function () {
       } else {
         console.log("User is not logged in. Redirecting to login...");
         liff.login({
-          redirectUri: "https://liff.line.me/2002643017-EN5j2n0d",
+          redirectUri: "https://liff.line.me/2002643017-7pYpek5O",
         });
       }
     });
