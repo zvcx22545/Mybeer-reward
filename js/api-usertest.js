@@ -2,7 +2,8 @@
 // let CALLBACK_URL = "https://mybeer-point.com";
 // let CLIENT_ID = "2002643017";
 // let CLIENT_SECRET = "6fa02e2c38585be6eb059593e044112c";
-let LiffID = "2002643017-7pYpek5O";
+let LiffID = "2002643017-EN5j2n0d";
+let LiffUrl = "https://liff.line.me/2002643017-EN5j2n0d";
 
 async function fetchUserProfile() {
   try {
@@ -180,6 +181,26 @@ async function fetchUserProfile() {
               // Handle the case when merchandise_id is not set
               // For example, you can alert the user or set a default value
               return; // Stop the function execution if merchandise_id is not set
+            }
+
+            if (
+              formData.type === "shipping" &&
+              (!formData.address ||
+                !formData.province ||
+                !formData.district ||
+                !formData.sub_district ||
+                !formData.postcode ||
+                !formData.receiver_name ||
+                !formData.phone)
+            ) {
+              // Show error message using SweetAlert2
+              Swal.fire({
+                title: "เกิดข้อผิดพลาด",
+                text: "กรุณากรอกข้อมูลให้ครบถ้วน",
+                icon: "error",
+                confirmButtonText: "ปิด",
+              });
+              return; // Stop the function execution if any shipping-related field is empty or null
             }
 
             // Api 302 trading trading Merchandise
@@ -808,7 +829,7 @@ document.addEventListener("DOMContentLoaded", async function () {
       } else {
         console.log("User is not logged in. Redirecting to login...");
         liff.login({
-          redirectUri: "https://liff.line.me/2002643017-7pYpek5O",
+          redirectUri: LiffUrl,
         });
       }
     });
