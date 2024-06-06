@@ -9,20 +9,17 @@ async function fetchUserProfile() {
   try {
     // User is logged in, fetch the user profile immediately
     try {
-       liff
+      liff
         .getProfile()
         .then((profile) => {
           // console.log('User profile:', profile);
-          console.log(profile)
+          console.log(profile);
 
           const customer_id = profile.userId;
 
-          if( document.getElementById("CustomerId"))
-          {
+          if (document.getElementById("CustomerId")) {
             document.getElementById("CustomerId").value = customer_id;
-          }
-          else if( document.getElementById("userid"))
-          {
+          } else if (document.getElementById("userid")) {
             document.getElementById("userid").value = customer_id;
           }
           //Api 301 Get all user
@@ -34,13 +31,13 @@ async function fetchUserProfile() {
             method: "POST",
             timeout: 0,
             headers: {
-              "Content-Type": "application/json",
+              "Content-Type": "application/json"
             },
             data: JSON.stringify({
               customer_id: customer_id,
               picture: profile.pictureUrl, // Use the variable here
-              name: profile.displayName,
-            }),
+              name: profile.displayName
+            })
           };
           $.ajax(Getuserprofile).done(function (response) {
             // Update the HTML content with the API data
@@ -48,7 +45,7 @@ async function fetchUserProfile() {
             $("#points").text(`Points: ${response.point}`);
             $("#Profileimage").attr("src", response.picture);
             $("#Profilemini").attr("src", response.picture);
-            $("#Telephone").attr("value",response.phone);
+            $("#Telephone").attr("value", response.phone);
 
             var userPoints = response.point;
 
@@ -60,8 +57,8 @@ async function fetchUserProfile() {
               timeout: 0,
               headers: {
                 Authorization:
-                  "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3MDUzMzYzNDR9.g0VSsvTajlOr_FsNiQBTuCbIUM-O24R5jCwREc_9eP0",
-              },
+                  "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3MDUzMzYzNDR9.g0VSsvTajlOr_FsNiQBTuCbIUM-O24R5jCwREc_9eP0"
+              }
             };
 
             $.ajax(Allmerchandise)
@@ -156,7 +153,7 @@ async function fetchUserProfile() {
               phone: $("#phone").val(),
               merchandise_id: $("#merchandiseId").val(),
               customer_id: $("#CustomerId").val(),
-              type: "shipping", // Initialize with an empty string
+              type: "shipping" // Initialize with an empty string
             };
 
             $("input[type='radio'][name='bordered-radio']").on(
@@ -198,7 +195,7 @@ async function fetchUserProfile() {
                 title: "เกิดข้อผิดพลาด",
                 text: "กรุณากรอกข้อมูลให้ครบถ้วน",
                 icon: "error",
-                confirmButtonText: "ปิด",
+                confirmButtonText: "ปิด"
               });
               return; // Stop the function execution if any shipping-related field is empty or null
             }
@@ -212,7 +209,7 @@ async function fetchUserProfile() {
               headers: {
                 "Content-Type": "application/json",
                 Authorization:
-                  "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3MDUzMzYzNDR9.g0VSsvTajlOr_FsNiQBTuCbIUM-O24R5jCwREc_9eP0",
+                  "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3MDUzMzYzNDR9.g0VSsvTajlOr_FsNiQBTuCbIUM-O24R5jCwREc_9eP0"
               },
               data: JSON.stringify({
                 merchandise_id: formData.merchandise_id,
@@ -224,12 +221,12 @@ async function fetchUserProfile() {
                 province: formData.province,
                 postcode: formData.postcode,
                 phone: formData.phone,
-                type: formData.type,
-              }),
+                type: formData.type
+              })
             };
             $.ajax(tradeMerchandise).done(function (response) {
               if (response.type === "onsite") {
-                if (response.point ==0) { 
+                if (response.point == 0) {
                   Swal.fire({
                     title: "ยืนยันรับสิทธิ์สำเร็จ",
                     html:
@@ -240,7 +237,7 @@ async function fetchUserProfile() {
                     customClass: {
                       confirmButton:
                         " mb-[-2rem] w-[100%] h-[30px] px-[10rem] rounded-[3px] bg-cyan-500 border-1 border-[#28B7E1] text-[#fff] flex justify-center items-center",
-                      title: "mt-[-2.5rem]",
+                      title: "mt-[-2.5rem]"
                     },
                     buttonsStyling: false,
                     padding: "4rem 2rem",
@@ -253,7 +250,7 @@ async function fetchUserProfile() {
                           resolve();
                         }, 3000); // Simulating 2 seconds of processing time
                       });
-                    },
+                    }
                   }).then((result) => {
                     // Check if the "ปิด" button was clicked
                     if (result.isConfirmed) {
@@ -275,7 +272,7 @@ async function fetchUserProfile() {
                     customClass: {
                       confirmButton:
                         "mt-[2rem] mb-[-2rem] w-[100%] h-[30px] px-[10rem] rounded-[3px] bg-cyan-500 border-1 border-[#28B7E1] text-[#fff] flex justify-center items-center",
-                      title: "mt-[-3rem]",
+                      title: "mt-[-3rem]"
                     },
                     buttonsStyling: false,
                     padding: "4rem 2rem",
@@ -288,7 +285,7 @@ async function fetchUserProfile() {
                           resolve();
                         }, 3000); // Simulating 2 seconds of processing time
                       });
-                    },
+                    }
                   }).then((result) => {
                     // Check if the "ปิด" button was clicked
                     if (result.isConfirmed) {
@@ -306,7 +303,7 @@ async function fetchUserProfile() {
                   confirmButtonColor: "#3085d6",
                   cancelButtonColor: "#d33",
                   cancelButtonText: "ปิด",
-                  confirmButtonText: "ยืนยัน",
+                  confirmButtonText: "ยืนยัน"
                 }).then((result) => {
                   if (result.isConfirmed) {
                     console.log("หากกดยืนยัน ");
@@ -315,19 +312,17 @@ async function fetchUserProfile() {
                       text: "การแลกสิทธิ์ของคุณได้รับการยืนยันแล้ว",
                       icon: "success",
                       confirmButtonColor: "#3085d6",
-                      confirmButtonText: "ปิด",
+                      confirmButtonText: "ปิด"
                     }).then((result) => {
                       if (result.isConfirmed) {
                         console.log("กดปิด จะปิด Modal");
                       }
                     });
                     location.reload();
-
                   } else {
                     console.log("Modal would be closed");
                   }
                 });
-                
               }
 
               // Directly hide the modal by changing its style
@@ -344,8 +339,8 @@ async function fetchUserProfile() {
             timeout: 0,
             headers: {
               Authorization:
-                "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3MDUzMzYzNDR9.g0VSsvTajlOr_FsNiQBTuCbIUM-O24R5jCwREc_9eP0",
-            },
+                "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3MDUzMzYzNDR9.g0VSsvTajlOr_FsNiQBTuCbIUM-O24R5jCwREc_9eP0"
+            }
           };
 
           try {
@@ -459,11 +454,11 @@ async function fetchUserProfile() {
                     color: "red",
                     gap: "7px",
                     "align-items": "center",
-                    "justify-content": "center",
+                    "justify-content": "center"
                   })
                   .append(document.createTextNode("รอดำเนินการ")),
                 ShipmentClass: ShipmentClass,
-                bgColor: bgColor,
+                bgColor: bgColor
               };
             }
             if (Shipstatus === "complete") {
@@ -479,11 +474,11 @@ async function fetchUserProfile() {
                     color: "#1AA127",
                     gap: "7px",
                     "align-items": "center",
-                    "justify-content": "center",
+                    "justify-content": "center"
                   })
                   .append(document.createTextNode("จัดส่งสำเร็จ")),
                 ShipmentClass: ShipmentClass,
-                bgColor: bgColor,
+                bgColor: bgColor
               };
             }
             if (Shipstatus === "cancel") {
@@ -500,11 +495,11 @@ async function fetchUserProfile() {
                     color: "red",
                     gap: "7px",
                     "align-items": "center",
-                    "justify-content": "center",
+                    "justify-content": "center"
                   })
                   .append(document.createTextNode("ยกเลิกจัดส่ง")),
                 ShipmentClass: ShipmentClass,
-                bgColor: bgColor,
+                bgColor: bgColor
               };
             }
             return Shipstatus;
@@ -528,11 +523,11 @@ async function fetchUserProfile() {
                     color: "red",
                     gap: "7px",
                     "align-items": "center",
-                    "justify-content": "center",
+                    "justify-content": "center"
                   })
                   .append(document.createTextNode("รอดำเนินการ")),
                 circleClass: circleClass,
-                bgColor: bgColor,
+                bgColor: bgColor
               };
             }
 
@@ -550,11 +545,11 @@ async function fetchUserProfile() {
                     color: "red",
                     gap: "7px",
                     "align-items": "center",
-                    "justify-content": "center",
+                    "justify-content": "center"
                   })
                   .append(document.createTextNode("ตรวจสอบแล้ว")),
                 circleClass: circleClass,
-                bgColor: bgColor,
+                bgColor: bgColor
               };
             }
             if (Approvestatus === "cancel") {
@@ -569,11 +564,11 @@ async function fetchUserProfile() {
                     color: "red",
                     gap: "7px",
                     "align-items": "center",
-                    "justify-content": "center",
+                    "justify-content": "center"
                   })
                   .append(document.createTextNode("ยกเลิกสิทธิ์")),
                 circleClass: circleClass,
-                bgColor: bgColor,
+                bgColor: bgColor
               };
             }
             return Approvestatus;
@@ -600,26 +595,27 @@ async function fetchUserProfile() {
             maxBodyLength: Infinity,
             headers: {
               Authorization:
-                "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3MDUzMzYzNDR9.g0VSsvTajlOr_FsNiQBTuCbIUM-O24R5jCwREc_9eP0",
-            },
+                "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3MDUzMzYzNDR9.g0VSsvTajlOr_FsNiQBTuCbIUM-O24R5jCwREc_9eP0"
+            }
           };
           try {
-            $.ajax(GetOrders).done(function(response) {
-              if (Array.isArray(response)) {
-                  response.forEach(function(order, index) {
-                      order.orderItems.forEach(function(item) {
-                        
-                          let Shoptype = order.orderType;
-                          const Shipmentstatus = getStatusElement(order.shipmentStatus); // Adjust this function to return a string based on shipmentStatus
-                          statusText = Shipmentstatus.Shipments.text();
-                          let ShipmentCircle = Shipmentstatus.ShipmentClass;
-                          let bgShipment = Shipmentstatus.bgColor;
-                          let ShipmemtText = "";
-                          if(bgShipment === "bg-red-400")
-                          {
-                            ShipmemtText = "text-white";
-                          }
-                          const orderContent = `
+            $.ajax(GetOrders)
+              .done(function (response) {
+                if (Array.isArray(response)) {
+                  response.forEach(function (order, index) {
+                    order.orderItems.forEach(function (item) {
+                      let Shoptype = order.orderType;
+                      const Shipmentstatus = getStatusElement(
+                        order.shipmentStatus
+                      ); // Adjust this function to return a string based on shipmentStatus
+                      statusText = Shipmentstatus.Shipments.text();
+                      let ShipmentCircle = Shipmentstatus.ShipmentClass;
+                      let bgShipment = Shipmentstatus.bgColor;
+                      let ShipmemtText = "";
+                      if (bgShipment === "bg-red-400") {
+                        ShipmemtText = "text-white";
+                      }
+                      const orderContent = `
                               <div class="grid border-[#DBDBDB] gap-2 shadow-lg px-3 py-6 mb-6">
                                   <div class="flex justify-between">
                                       <div class="flex gap-2">
@@ -649,15 +645,14 @@ async function fetchUserProfile() {
                                   </div>
                               </div>
                           `;
-                          let Time = moment
-                      .tz(order.updated_at, "Asia/Bangkok")
-                      .format("DD/MM/YYYY HH:mm:ss");
-                      if(Shoptype === "storefront")
-                      {
+                      let Time = moment
+                        .tz(order.updated_at, "Asia/Bangkok")
+                        .format("DD/MM/YYYY HH:mm:ss");
+                      if (Shoptype === "storefront") {
                         Shoptype = "ร้านโชห่วย";
                       }
 
-                          const StoreFront = `
+                      const StoreFront = `
                            <div class="grid border-[#DBDBDB] gap-2 shadow-lg px-3 py-6 mb-6">
                                   <div class="flex justify-between">
                                       <div class="flex gap-2">
@@ -681,29 +676,26 @@ async function fetchUserProfile() {
                                     
                                   </div>
                               </div>
-                          `
-                          if(Shoptype)
-                          {
-                            $("#OrderHistory").append(StoreFront);
-                          }
-                          else{
-                            $("#OrderHistory").append(orderContent);
-                          }
-                          
-                          
-                      });
+                          `;
+                      if (Shoptype) {
+                        $("#OrderHistory").append(StoreFront);
+                      } else {
+                        $("#OrderHistory").append(orderContent);
+                      }
+                    });
                   });
-              }
-          }).fail(function(jqXHR, textStatus, errorThrown) {
-              console.error("AJAX request failed:", textStatus, errorThrown);
-          });
+                }
+              })
+              .fail(function (jqXHR, textStatus, errorThrown) {
+                console.error("AJAX request failed:", textStatus, errorThrown);
+              });
           } catch (e) {
             console.log(e);
           }
 
           function getStatusElement(status) {
             // Create the status circle element
-            
+
             let ShipmentClass;
             let bgColor;
             // Depending on the status, change the color of the circle
@@ -719,11 +711,11 @@ async function fetchUserProfile() {
                     color: "red",
                     gap: "7px",
                     "align-items": "center",
-                    "justify-content": "center",
+                    "justify-content": "center"
                   })
                   .append(document.createTextNode("เตรียมจัดส่ง")),
                 ShipmentClass: ShipmentClass,
-                bgColor: bgColor,
+                bgColor: bgColor
               };
             } else if (status === "ON_DELIVERY") {
               ShipmentClass = "bg-[#F1BC00]";
@@ -737,11 +729,11 @@ async function fetchUserProfile() {
                     color: "red",
                     gap: "7px",
                     "align-items": "center",
-                    "justify-content": "center",
+                    "justify-content": "center"
                   })
                   .append(document.createTextNode("กำลังจัดส่ง")),
                 ShipmentClass: ShipmentClass,
-                bgColor: bgColor,
+                bgColor: bgColor
               };
             } else if (status === "SHIPPED_ALL") {
               ShipmentClass = "bg-[#1FD831]";
@@ -755,11 +747,11 @@ async function fetchUserProfile() {
                     color: "red",
                     gap: "7px",
                     "align-items": "center",
-                    "justify-content": "center",
+                    "justify-content": "center"
                   })
                   .append(document.createTextNode("จัดส่งแล้ว")),
                 ShipmentClass: ShipmentClass,
-                bgColor: bgColor,
+                bgColor: bgColor
               };
             }
             if (status === "PENDING") {
@@ -774,11 +766,11 @@ async function fetchUserProfile() {
                     color: "red",
                     gap: "7px",
                     "align-items": "center",
-                    "justify-content": "center",
+                    "justify-content": "center"
                   })
                   .append(document.createTextNode("รอดำเนินการ")),
                 ShipmentClass: ShipmentClass,
-                bgColor: bgColor,
+                bgColor: bgColor
               };
             }
             if (status === "NO_SHIPMENT") {
@@ -793,11 +785,11 @@ async function fetchUserProfile() {
                     color: "red",
                     gap: "7px",
                     "align-items": "center",
-                    "justify-content": "center",
+                    "justify-content": "center"
                   })
                   .append(document.createTextNode("ยังไม่จัดส่ง")),
                 ShipmentClass: ShipmentClass,
-                bgColor: bgColor,
+                bgColor: bgColor
               };
             }
           }
@@ -815,21 +807,20 @@ document.addEventListener("DOMContentLoaded", async function () {
   try {
     await liff.init({
       liffId: LiffID,
-      withLoginOnExternalBrowser: true,
+      withLoginOnExternalBrowser: true
     });
 
-    liff.ready.then(() => {
+    liff.ready.then(async () => {
       // Mark this block as async
       if (liff.isInClient()) {
-        fetchUserProfile()
-      }
-      else if (liff.isLoggedIn()) {
+        await fetchUserProfile();
+      } else if (liff.isLoggedIn()) {
         console.log("User is logged in. Fetching user profile...");
         fetchUserProfile();
       } else {
         console.log("User is not logged in. Redirecting to login...");
         liff.login({
-          redirectUri: LiffUrl,
+          redirectUri: LiffUrl
         });
       }
     });
