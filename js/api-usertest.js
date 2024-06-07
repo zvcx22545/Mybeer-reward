@@ -3,7 +3,7 @@
 // let CLIENT_ID = "2002643017";
 // let CLIENT_SECRET = "6fa02e2c38585be6eb059593e044112c";
 let LiffID = "2002643017-EN5j2n0d";
-let LiffUrl = "https://liff.line.me/2002643017-EN5j2n0d";
+let LiffUrl = "line://liff.line.me/2002643017-EN5j2n0d";
 
 async function fetchUserProfile() {
   try {
@@ -13,7 +13,7 @@ async function fetchUserProfile() {
         .getProfile()
         .then((profile) => {
           // console.log('User profile:', profile);
-          console.log(profile);
+          // console.log(profile);
 
           const customer_id = profile.userId;
 
@@ -39,6 +39,7 @@ async function fetchUserProfile() {
               name: profile.displayName
             })
           };
+
           $.ajax(Getuserprofile).done(function (response) {
             // Update the HTML content with the API data
             $("#Nameuser").text(response.name);
@@ -805,25 +806,29 @@ async function fetchUserProfile() {
 
 document.addEventListener("DOMContentLoaded", async function () {
   try {
-    await liff.init({
-      liffId: LiffID,
-      withLoginOnExternalBrowser: true
-    });
+    await liff
+      .init({
+        liffId: LiffID, // Use own liffId
+        withLoginOnExternalBrowser: true // Enable automatic login process
+      })
+      .then(() => {
+        liff.ready.then(async () => {
+          // Mark this block as async
+          if (liff.isInClient()) {
+            await fetchUserProfile();
+          } else if (liff.isLoggedIn()) {
+            console.log("User is logged in. Fetching user profile...");
 
-    liff.ready.then(async () => {
-      // Mark this block as async
-      if (liff.isInClient()) {
-        await fetchUserProfile();
-      } else if (liff.isLoggedIn()) {
-        console.log("User is logged in. Fetching user profile...");
-        fetchUserProfile();
-      } else {
-        console.log("User is not logged in. Redirecting to login...");
-        liff.login({
-          redirectUri: LiffUrl
+            await fetchUserProfile();
+          } else {
+            console.log("User is not logged in. Redirecting to login...");
+
+            await liff.login({
+              redirectUri: LiffUrl
+            });
+          }
         });
-      }
-    });
+      });
   } catch (error) {
     console.error("Error initializing LIFF:", error);
     alert("Error initializing app. Please try again.");

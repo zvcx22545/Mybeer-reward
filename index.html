@@ -1,45 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-   <meta charset="UTF-8">
-   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   
-   <!-- font awesome cdn link  -->
-   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-   <!-- custom css file link  -->
-   <link rel="stylesheet" href="css/style.css">
-   <link rel="stylesheet" href="css/order-history.css">
-   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-   <!-- custom js file link  -->
-   <link rel="stylesheet" href="https://unpkg.com/sweetalert2@11/dist/sweetalert2.min.css">
+  <!-- font awesome cdn link  -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <!-- custom css file link  -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/order-history.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+  <!-- custom js file link  -->
+  <link rel="stylesheet" href="https://unpkg.com/sweetalert2@11/dist/sweetalert2.min.css">
 
-   
 </head>
+
 <body>
-    
-<div class="container">
 
-  <!-- ----------------------------------Nav Or Tiltle--------------------------------------- -->
+  <div class="container">
 
-  <div class="empty-top mb-[5%] flex justify-between mx-[17%] max-[1285px]:mx-0">
-    <!-- <h3 class="text-5xl">Top-left</h3> -->
-    <img class="h-[42px] w-[43px]" src="images/logo.png" alt="logo">
-    <!-- <h3 class="text-5xl">top-right</h3> -->
-    <!-- <img class="rounded-full h-[54px] w-[54px] border-2 border-blue-500" src="" id="Profilemini" alt="User Profile"> -->
-    <a class="max-[500px]:w-[105px] w-[30%] py-2 px-[1px]" href="/Mybeer-7-11.html"><button id="registrationButton" class="bg-[#28B7E1] text-white py-2.5  w-full text-2xl rounded-lg font-bold">สะสมแต้ม Mybeer</button></a>
+    <!-- ----------------------------------Nav Or Tiltle--------------------------------------- -->
 
-  </div>
+    <div class="empty-top mb-[5%] flex justify-between mx-[17%] max-[1285px]:mx-0">
+      <!-- <h3 class="text-5xl">Top-left</h3> -->
+      <img class="h-[42px] w-[43px]" src="images/logo.png" alt="logo">
+      <!-- <h3 class="text-5xl">top-right</h3> -->
+      <!-- <img class="rounded-full h-[54px] w-[54px] border-2 border-blue-500" src="" id="Profilemini" alt="User Profile"> -->
+      <a class="max-[500px]:w-[105px] w-[30%] py-2 px-[1px]" href="/Mybeer-7-11.html"><button id="registrationButton"
+          class="bg-[#28B7E1] text-white py-2.5  w-full text-2xl rounded-lg font-bold">สะสมแต้ม Mybeer</button></a>
 
-  <!-- ---------------------------------Card Profile----------------------------------------- -->
+    </div>
 
-   <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
+    <!-- ---------------------------------Card Profile----------------------------------------- -->
+
+    <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
       <div id="myBtn" class="bg-white rounded-lg overflow-hidden shadow-lg p-4 mb-5">
         <div class="flex items-center space-x-10 p-4">
           <img class="rounded-full h-[80px] w-[80px] border-2 border-blue-500" id="Profileimage" src="">
           <div>
-            <h1 class="text-3xl font-semibold my-[10px]"id="Nameuser"></h1>
+            <h1 class="text-3xl font-semibold my-[10px]" id="Nameuser"></h1>
             <div class="flex items-center text-xl my-[10px]">
               <i class="fas fa-coins text-yellow-500 mr-2"></i>
 
@@ -55,104 +57,116 @@
         </div>
       </div>
 
- <!-- ----------------------------------Menu---------------------------------------- -->
+      <!-- ----------------------------------Menu---------------------------------------- -->
 
- <div class="flex justify-center text-center gap-[10%] mb-[3rem]">
+      <div class="flex justify-center text-center gap-[10%] mb-[3rem]">
 
-  <button class="text-[1.875rem] h-[5rem] text-[#8CACB8] active " id="trading"> Trading </button>
+        <button class="text-[1.875rem] h-[5rem] text-[#8CACB8] active " id="trading"> Trading </button>
 
-  <button class="text-[1.875rem] text-[#8CACB8] " id="order-Trading"> Trading History </button>
+        <button class="text-[1.875rem] text-[#8CACB8] " id="order-Trading"> Trading History </button>
 
-  <button class="text-[1.875rem] text-[#8CACB8] " id="order-History"> Order History </button>
-  
-</div>
-
-  <!-- --------------------------------Loop Data Product Redeem--------------------------------------- -->
-
-    <div class="contents-product" id="contents-product">
-      <!-- <button class="w-full rounded-lg text-white p-[10px] bg-cyan-500 mt-5" type="submit" id="submit-modal3">แลกสิทธิ์</button> -->
-
-
-      <div class="products-container grid grid-cols-3" id="products-container" data-name="p-1">
-
+        <button class="text-[1.875rem] text-[#8CACB8] " id="order-History"> Order History </button>
 
       </div>
 
-    </div>
+      <!-- --------------------------------Loop Data Product Redeem--------------------------------------- -->
 
-  <!-- ----------------------------------Modal---------------------------------------- -->
-     
-<div class="products-preview max-[768px]:w-cover" id="modalpreview">
+      <div class="contents-product" id="contents-product">
+        <!-- <button class="w-full rounded-lg text-white p-[10px] bg-cyan-500 mt-5" type="submit" id="submit-modal3">แลกสิทธิ์</button> -->
 
-   <div class="preview" data-target="p-1" >
-         <div class="p-6">
-               <button class="absolute top-0 right-0 mt-2 mr-2 text-gray-400 hover:text-gray-600">
-                   <i class="fas fa-times"></i>
-               </button>
-               <div class="flex ">
-                   <img src="https://placehold.co/200x200" alt="" class="mr-24" id="mockimage" >
-                   <div class="modal-content w-1/2">
-                       <h3 class="text-3xl font-bold" id="text-Modal">แลก 3,900 COINS</h3>
-                       <p class="text-base" id="text2-Modal">รับ MY CLEANEST HANDS ฟรี 1 ขวด</p>
-                       <p class="text-xs text-gray-500 mt-1" id="description">ประหยัด 39 บาท</p>
-                   </div>
-               </div>
-           </div>
-      
-           <div class="flex max-[768px]:justify-center ">
+
+        <div class="products-container grid grid-cols-3" id="products-container" data-name="p-1">
+
+
+        </div>
+
+      </div>
+
+      <!-- ----------------------------------Modal---------------------------------------- -->
+
+      <div class="products-preview max-[768px]:w-cover" id="modalpreview">
+
+        <div class="preview" data-target="p-1">
+          <div class="p-6">
+            <button class="absolute top-0 right-0 mt-2 mr-2 text-gray-400 hover:text-gray-600">
+              <i class="fas fa-times"></i>
+            </button>
+            <div class="flex ">
+              <img src="https://placehold.co/200x200" alt="" class="mr-24" id="mockimage">
+              <div class="modal-content w-1/2">
+                <h3 class="text-3xl font-bold" id="text-Modal">แลก 3,900 COINS</h3>
+                <p class="text-base" id="text2-Modal">รับ MY CLEANEST HANDS ฟรี 1 ขวด</p>
+                <p class="text-xs text-gray-500 mt-1" id="description">ประหยัด 39 บาท</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="flex max-[768px]:justify-center ">
             <div class="empty w-[45%] block max-[768px]:hidden"></div>
             <form class=" w-[100%] max-[768px]:w-2/2" id="submit-modal">
-              
-              <div class="flex gap-[25px] mb-[2rem] max-[768px]:justify-center max-[330px]:flex-col text-left gap-[5px]">
 
-                    <div class="flex items-center gap-[10px]">
-                      <input id="bordered-radio-1" type="radio" value="onsite" name="bordered-radio" class="w-[15px] h-[15px] text-[#00A3CF] bg-gray-100 border-gray-300 focus:ring-[#00A3CF] dark:focus:ring-[#00A3CF] dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                        <label class="text-[#444] text-2xl text-left font-bold mr-[1rem]" for="แลกรับหน้างาน">แลกรับหน้างาน</label>
-                    </div>
-                    <div class="flex items-center gap-[10px]">
-                      <input checked id="bordered-radio-2" type="radio" value="shipping" name="bordered-radio" class="w-[15px] h-[15px] text-[#00A3CF] bg-gray-100 border-gray-300 focus:ring-[#00A3CF] dark:focus:ring-[#00A3CF] dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                      <label class="text-[#444] text-2xl text-left font-bold "  for="จัดส่งผ่านไปรษณีย์">จัดส่งผ่านไปรษณีย์</label>
-                  </div>
+              <div
+                class="flex gap-[25px] mb-[2rem] max-[768px]:justify-center max-[330px]:flex-col text-left gap-[5px]">
 
+                <div class="flex items-center gap-[10px]">
+                  <input id="bordered-radio-1" type="radio" value="onsite" name="bordered-radio"
+                    class="w-[15px] h-[15px] text-[#00A3CF] bg-gray-100 border-gray-300 focus:ring-[#00A3CF] dark:focus:ring-[#00A3CF] dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                  <label class="text-[#444] text-2xl text-left font-bold mr-[1rem]"
+                    for="แลกรับหน้างาน">แลกรับหน้างาน</label>
+                </div>
+                <div class="flex items-center gap-[10px]">
+                  <input checked id="bordered-radio-2" type="radio" value="shipping" name="bordered-radio"
+                    class="w-[15px] h-[15px] text-[#00A3CF] bg-gray-100 border-gray-300 focus:ring-[#00A3CF] dark:focus:ring-[#00A3CF] dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                  <label class="text-[#444] text-2xl text-left font-bold "
+                    for="จัดส่งผ่านไปรษณีย์">จัดส่งผ่านไปรษณีย์</label>
                 </div>
 
+              </div>
+
               <div class="grid border-2 p-5 rounded-lg" id="form-check2">
-                  <label class="text-[#444] text-2xl mr-auto font-bold" for="address">ที่อยู่จัดส่ง</label>
+                <label class="text-[#444] text-2xl mr-auto font-bold" for="address">ที่อยู่จัดส่ง</label>
                 <div class="grid my-2 text-left">
                   <label class="text-[#444] px-3" for="address">เลขที่</label>
-                  <input type="text" id="address" class="form-control border p-2 rounded-lg border-black" placeholder="Address" >
+                  <input type="text" id="address" class="form-control border p-2 rounded-lg border-black"
+                    placeholder="Address">
                 </div>
 
                 <div class="flex justify-between">
                   <div class="grid my-2 mr-2 w-full text-left">
                     <label class="text-[#444] px-3" for="address">จังหวัด</label>
-                    <input type="text" id="province" class="form-control border p-2 rounded-lg border-black" placeholder="District" >
+                    <input type="text" id="province" class="form-control border p-2 rounded-lg border-black"
+                      placeholder="District">
                   </div>
                   <div class="grid my-2 ml-2 w-full text-left">
                     <label class="text-[#444] px-3" for="address">เขต/อำเภอ</label>
-                    <input type="text" id="district" class="form-control border p-2 rounded-lg border-black" placeholder="District" >
+                    <input type="text" id="district" class="form-control border p-2 rounded-lg border-black"
+                      placeholder="District">
                   </div>
                 </div>
 
                 <div class="flex justify-between">
                   <div class="col my-2 mr-2 text-left">
                     <label class="text-[#444] px-3" for="address">แขวง/ตำบล</label>
-                    <input type="text" id="subDistrict" class="form-control border p-2 w-full rounded-lg border-black" placeholder="Sub District" >
+                    <input type="text" id="subDistrict" class="form-control border p-2 w-full rounded-lg border-black"
+                      placeholder="Sub District">
                   </div>
                   <div class="col my-2 ml-2 text-left">
                     <label class="text-[#444] px-3" for="address">รหัสไปรษณีย์</label>
-                    <input type="text" id="zipCode" class="form-control border p-2 w-full rounded-lg border-black" placeholder="Zip Code" >
+                    <input type="text" id="zipCode" class="form-control border p-2 w-full rounded-lg border-black"
+                      placeholder="Zip Code">
                   </div>
                 </div>
 
                 <div class="grid my-2 text-left">
                   <label class="text-[#444] px-3" for="address">ชื่อผู้รับ</label>
-                  <input type="text" id="receiverName" class="form-control border p-2 rounded-lg border-black" placeholder="Name" >
+                  <input type="text" id="receiverName" class="form-control border p-2 rounded-lg border-black"
+                    placeholder="Name">
                 </div>
 
                 <div class="grid my-2 text-left">
                   <label class="text-[#444] px-3" for="address">เบอร์ติดต่อ</label>
-                  <input type="number" id="phone" class="form-control border p-2 rounded-lg border-black" placeholder="Phone" maxlength="10" >
+                  <input type="number" id="phone" class="form-control border p-2 rounded-lg border-black"
+                    placeholder="Phone" maxlength="10">
                 </div>
 
                 <div class="col1 my-2 text-left">
@@ -162,64 +176,69 @@
                   <input type="text" id="CustomerId" class="form-control hidden">
                 </div>
               </div>
-              <button class="w-full rounded-lg text-white p-[10px] bg-cyan-500 mt-5" type="submit" id="submit-modal1">แลกสิทธิ์</button>
-              <button class="w-full rounded-lg text-white p-[10px] bg-cyan-500 mt-5" type="submit" id="submit-modal2">แลกสิทธิ์</button>
+              <button class="w-full rounded-lg text-white p-[10px] bg-cyan-500 mt-5" type="submit"
+                id="submit-modal1">แลกสิทธิ์</button>
+              <button class="w-full rounded-lg text-white p-[10px] bg-cyan-500 mt-5" type="submit"
+                id="submit-modal2">แลกสิทธิ์</button>
             </form>
           </div>
         </div>
-     </div>
-   </div>
-   
-
-   <!-- ---------------------------------Trading History----------------------------------------- -->
-
-  <div id="table-td" class="overflow-x-auto sm:rounded-lg">
-
-              <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
-                <div class="overflow-y-auto shadow-lg h-[50vh]" id="TradeHistory">
-                    
-                </div>
-              </div>
-
-            </div>
-
-
-  <!-- ---------------------------------Order History----------------------------------------- -->
-
-  <div id="table-hs" class="overflow-x-auto sm:rounded-lg">
-
-    <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
-      <div class="overflow-y-auto shadow-lg h-[50vh]" id="OrderHistory">
       </div>
-   </div>
+    </div>
+
+
+    <!-- ---------------------------------Trading History----------------------------------------- -->
+
+    <div id="table-td" class="overflow-x-auto sm:rounded-lg">
+
+      <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
+        <div class="overflow-y-auto shadow-lg h-[50vh]" id="TradeHistory">
+
+        </div>
+      </div>
+
+    </div>
+
+
+    <!-- ---------------------------------Order History----------------------------------------- -->
+
+    <div id="table-hs" class="overflow-x-auto sm:rounded-lg">
+
+      <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
+        <div class="overflow-y-auto shadow-lg h-[50vh]" id="OrderHistory">
+        </div>
+      </div>
+
+    </div>
+    <!-- ---------------------------------End----------------------------------------- -->
 
   </div>
-  <!-- ---------------------------------End----------------------------------------- -->
-
-</div>
 
 </body>
 <!-- Include SweetAlert2 CSS and JS -->
-<script src="https://unpkg.com/sweetalert2@11"></script> 
+<script src="https://unpkg.com/sweetalert2@11"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js" ></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.23/moment-timezone-with-data-2012-2022.min.js"></script>
-  <script charset="utf-8" src="https://static.line-scdn.net/liff/edge/versions/2.23.2/sdk.js"></script>
-  <script src="https://unpkg.com/vconsole@latest/dist/vconsole.min.js"></script>
-  
-  <script src="js/script.js" defer></script>
-  <script src="js/page.js" defer></script>
-  <script src="js/pagination.js" defer></script>
-  <script src="js/api-usertest.js" defer></script>
-  <script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment.min.js"></script>
+<script
+  src="https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.23/moment-timezone-with-data-2012-2022.min.js"></script>
+<script src="https://static.line-scdn.net/liff/edge/versions/2.4.1/sdk.js"></script>
+<!-- <script src="https://static.line-scdn.net/liff/edge/versions/2.22.3/sdk.js"></script> -->
 
-<!--    
+<script src="js/api-usertest.js"></script>
+<script src="https://unpkg.com/vconsole@latest/dist/vconsole.min.js"></script>
+
+
+<script src="js/script.js" defer></script>
+<script src="js/page.js" defer></script>
+<script src="js/pagination.js" defer></script>
+<script src="https://cdn.tailwindcss.com"></script>
+<!-- 
 <script>
   var vConsole = new window.VConsole();
 
   console.log('output to Log panel.')
-console.log('[system]', 'output to System panel.')
+  console.log('[system]','output to System panel.')
 </script> -->
 
 
