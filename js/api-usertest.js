@@ -3,7 +3,7 @@
 // let CLIENT_ID = "2002643017";
 // let CLIENT_SECRET = "6fa02e2c38585be6eb059593e044112c";
 let LiffID = "2002643017-EN5j2n0d";
-let LiffUrl = "line://liff.line.me/2002643017-EN5j2n0d";
+let LiffUrl = "https://liff.line.me/2002643017-EN5j2n0d";
 
 async function fetchUserProfile() {
   try {
@@ -13,7 +13,7 @@ async function fetchUserProfile() {
         .getProfile()
         .then((profile) => {
           // console.log('User profile:', profile);
-          // console.log(profile);
+          console.log(profile);
 
           const customer_id = profile.userId;
 
@@ -814,15 +814,12 @@ document.addEventListener("DOMContentLoaded", async function () {
       .then(() => {
         liff.ready.then(async () => {
           // Mark this block as async
-          if (liff.isInClient()) {
-            await fetchUserProfile();
-          } else if (liff.isLoggedIn()) {
-            console.log("User is logged in. Fetching user profile...");
-
+          if (liff.isInClient() || liff.isLoggedIn()) {
+            // alert("11111");
             await fetchUserProfile();
           } else {
             console.log("User is not logged in. Redirecting to login...");
-
+            // alert("กรุณาเข้าสู่ระบบ");
             await liff.login({
               redirectUri: LiffUrl
             });
