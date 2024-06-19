@@ -12,6 +12,7 @@ document.addEventListener('DOMContentLoaded', function() {
   const checked2 = document.getElementById('bordered-radio-2');
   const preveiwContainer = document.querySelector('.products-preview');
   const loadingStatus = document.getElementById('loading-status');
+  const buttonText = document.getElementById('button-text');
 
   tableTd.style.display = 'none';
   tableHs.style.display = 'none';
@@ -73,11 +74,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // เพิ่ม event listener สำหรับ submitmodal2
   submitmodal2.addEventListener('click', function() {
-    if (!window.isSubmitModal2Clicked) {
-      window.isSubmitModal2Clicked = true;
-      this.classList.add('disabled'); // ปิดการทำงานของปุ่ม
-      this.textContent = 'กำลังบันทึก...';
-      loadingStatus.classList.remove('hidden'); // แสดงสถานะโหลด
+      if (!window.isSubmitModal2Clicked) {
+        window.isSubmitModal2Clicked = true;
+        this.classList.add('disabled'); // ปิดการทำงานของปุ่ม
+        buttonText.textContent = 'กำลังบันทึก...';
+        loadingStatus.classList.remove('hidden'); // แสดงสถานะโหลด
     }
   });
 });
