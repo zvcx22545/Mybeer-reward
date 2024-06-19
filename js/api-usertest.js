@@ -43,7 +43,7 @@ async function fetchUserProfile() {
           $.ajax(Getuserprofile).done(function (response) {
             // Update the HTML content with the API data
             $("#Nameuser").text(response.name);
-            $("#points").text(`Points: ${response.point}`);
+            $("#points").text(`COINS: ${response.point}`);
             $("#Profileimage").attr("src", response.picture);
             $("#Profilemini").attr("src", response.picture);
             $("#Telephone").attr("value", response.phone);
