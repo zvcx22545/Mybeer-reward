@@ -218,6 +218,13 @@ display: inline-block;
 
 }
 
+/* disible submitmodal */
+.disabled {
+   pointer-events: none;
+   opacity: 0.5;
+ }
+ 
+
 @media (max-width:991px){
 
    html{

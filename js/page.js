@@ -11,7 +11,6 @@ document.addEventListener('DOMContentLoaded', function() {
   const checked1 = document.getElementById('bordered-radio-1');
   const checked2 = document.getElementById('bordered-radio-2');
   const preveiwContainer = document.querySelector('.products-preview');
-  
 
   // กำหนดคลาสเริ่มต้นสำหรับการซ่อน productsContainer
   // productsContainer.classList.add('hidden');
@@ -20,7 +19,10 @@ document.addEventListener('DOMContentLoaded', function() {
   checked1.checked = true;
   formdata.classList.add('hidden');
   submitmodal.classList.add('hidden');
-  
+
+  // ตัวแปรสถานะเพื่อเก็บการคลิกของ submitmodal และ submitmodal2
+  let isSubmitModalClicked = false;
+  let isSubmitModal2Clicked = false;
 
   checked1.addEventListener('change', () => {
     formdata.classList.add('hidden');
@@ -35,29 +37,47 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 
   tradingBtn.addEventListener('click', function() {
-      document.getElementById('trading').classList.add('active');
-      document.getElementById('order-History').classList.remove('active');
-      document.getElementById('order-Trading').classList.remove('active');
-      productsContainer.classList.remove('hidden');
-      tableHs.style.display = 'none';
-      tableTd.style.display = 'none';
+    document.getElementById('trading').classList.add('active');
+    document.getElementById('order-History').classList.remove('active');
+    document.getElementById('order-Trading').classList.remove('active');
+    productsContainer.classList.remove('hidden');
+    tableHs.style.display = 'none';
+    tableTd.style.display = 'none';
   });
 
   orderTrandingBtn.addEventListener('click', function() {
-      document.getElementById('order-Trading').classList.add('active');
-      document.getElementById('trading').classList.remove('active');
-      document.getElementById('order-History').classList.remove('active');
-      productsContainer.classList.add('hidden');
-      tableHs.style.display = 'none';
-      tableTd.style.display = 'block';
+    document.getElementById('order-Trading').classList.add('active');
+    document.getElementById('trading').classList.remove('active');
+    document.getElementById('order-History').classList.remove('active');
+    productsContainer.classList.add('hidden');
+    tableHs.style.display = 'none';
+    tableTd.style.display = 'block';
   });
 
   orderHistoryBtn.addEventListener('click', function() {
-      document.getElementById('order-History').classList.add('active');
-      document.getElementById('trading').classList.remove('active');
-      document.getElementById('order-Trading').classList.remove('active');
-      productsContainer.classList.add('hidden');
-      tableHs.style.display = 'block';
-      tableTd.style.display = 'none';
+    document.getElementById('order-History').classList.add('active');
+    document.getElementById('trading').classList.remove('active');
+    document.getElementById('order-Trading').classList.remove('active');
+    productsContainer.classList.add('hidden');
+    tableHs.style.display = 'block';
+    tableTd.style.display = 'none';
+  });
+
+  // เพิ่ม event listener สำหรับ submitmodal
+  submitmodal.addEventListener('click', function() {
+    if (!isSubmitModalClicked) {
+      isSubmitModalClicked = true;
+      // ดำเนินการเพิ่มเติมที่คุณต้องการทำเมื่อ submitmodal ถูกคลิก
+      this.classList.add('disabled'); // ปิดการทำงานของปุ่ม
+    }
+  });
+
+  // เพิ่ม event listener สำหรับ submitmodal2
+  submitmodal2.addEventListener('click', function() {
+    if (!isSubmitModal2Clicked) {
+      isSubmitModal2Clicked = true;
+      // ดำเนินการเพิ่มเติมที่คุณต้องการทำเมื่อ submitmodal2 ถูกคลิก
+      this.classList.add('disabled'); // ปิดการทำงานของปุ่ม
+    }
   });
 });
