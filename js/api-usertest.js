@@ -197,7 +197,24 @@ async function fetchUserProfile() {
                 text: "กรุณากรอกข้อมูลให้ครบถ้วน",
                 icon: "error",
                 confirmButtonText: "ปิด"
+              }).then((result) => {
+                if (result.isConfirmed) {
+                  // if (window.isSubmitModal2Clicked) {
+                  //   window.isSubmitModal2Clicked = false;
+                  //   modal2 = document.getElementById('submit-modal2');
+                  //   modal2.classList.remove('disabled');
+                  // }
+                  if (window.isSubmitModalClicked) {
+                    window.isSubmitModalClicked = false;
+                    const modal1 =  document.getElementById('submit-modal1')
+                   modal1.classList.remove('disabled');
+                    modal1.textContent = 'แลกสิทธิ์';
+
+                  }
+                }
               });
+              
+              
               return; // Stop the function execution if any shipping-related field is empty or null
             }
 

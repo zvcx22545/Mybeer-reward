@@ -11,9 +11,8 @@ document.addEventListener('DOMContentLoaded', function() {
   const checked1 = document.getElementById('bordered-radio-1');
   const checked2 = document.getElementById('bordered-radio-2');
   const preveiwContainer = document.querySelector('.products-preview');
+  const loadingStatus = document.getElementById('loading-status');
 
-  // กำหนดคลาสเริ่มต้นสำหรับการซ่อน productsContainer
-  // productsContainer.classList.add('hidden');
   tableTd.style.display = 'none';
   tableHs.style.display = 'none';
   checked1.checked = true;
@@ -21,8 +20,8 @@ document.addEventListener('DOMContentLoaded', function() {
   submitmodal.classList.add('hidden');
 
   // ตัวแปรสถานะเพื่อเก็บการคลิกของ submitmodal และ submitmodal2
-  let isSubmitModalClicked = false;
-  let isSubmitModal2Clicked = false;
+  window.isSubmitModalClicked = false;
+  window.isSubmitModal2Clicked = false;
 
   checked1.addEventListener('change', () => {
     formdata.classList.add('hidden');
@@ -65,20 +64,20 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // เพิ่ม event listener สำหรับ submitmodal
   submitmodal.addEventListener('click', function() {
-    if (!isSubmitModalClicked) {
-      isSubmitModalClicked = true;
-      // ดำเนินการเพิ่มเติมที่คุณต้องการทำเมื่อ submitmodal ถูกคลิก
+    if (!window.isSubmitModalClicked) {
+      window.isSubmitModalClicked = true;
       this.classList.add('disabled'); // ปิดการทำงานของปุ่ม
+      this.textContent = 'กำลังบันทึก...';
     }
   });
 
   // เพิ่ม event listener สำหรับ submitmodal2
   submitmodal2.addEventListener('click', function() {
-    if (!isSubmitModal2Clicked) {
-      isSubmitModal2Clicked = true;
-      this.textContent('กำลังบันทึก...');
-      // ดำเนินการเพิ่มเติมที่คุณต้องการทำเมื่อ submitmodal2 ถูกคลิก
+    if (!window.isSubmitModal2Clicked) {
+      window.isSubmitModal2Clicked = true;
       this.classList.add('disabled'); // ปิดการทำงานของปุ่ม
+      this.textContent = 'กำลังบันทึก...';
+      loadingStatus.classList.remove('hidden'); // แสดงสถานะโหลด
     }
   });
 });
