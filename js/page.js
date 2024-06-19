@@ -76,6 +76,7 @@ document.addEventListener('DOMContentLoaded', function() {
   submitmodal2.addEventListener('click', function() {
     if (!isSubmitModal2Clicked) {
       isSubmitModal2Clicked = true;
+      this.textContent('กำลังบันทึก...');
       // ดำเนินการเพิ่มเติมที่คุณต้องการทำเมื่อ submitmodal2 ถูกคลิก
       this.classList.add('disabled'); // ปิดการทำงานของปุ่ม
     }
