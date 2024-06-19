@@ -414,7 +414,7 @@ async function fetchUserProfile() {
                         <p class="text-[#B3B3B3] text-xl">Product :</p> <p class="text-xl">${Tradeorder.merchandise.name}</p>
                       </div>
                       <div class="flex gap-2">
-                        <p class="text-[#B3B3B3] text-xl">จำนวน Point ที่แลก :</p> <p class="text-xl">${Tradeorder.merchandise.point}</p>
+                        <p class="text-[#B3B3B3] text-xl">จำนวน COINS ที่แลก :</p> <p class="text-xl">${Tradeorder.merchandise.point}</p>
                       </div>
 
                     <div class="flex justify-between">
